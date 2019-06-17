@@ -1,5 +1,9 @@
 # Csv-File-Cleaner
 
+## Dependencies
+
  <ul>
-  <li> pandas </li>
+  <li> OpenCv </li>
+  <li> numpy </li>
+  <li> matplotlib </li>
 </ul>

@@ -3,7 +3,5 @@
 ## Dependencies
 
  <ul>
-  <li> OpenCv </li>
-  <li> numpy </li>
-  <li> matplotlib </li>
+  <li> Pandas </li>
 </ul>

@@ -62,11 +62,11 @@ class CSV_FILECLEANER():
         
         
     def savef(self):
-        if (".csv" in self.filename) == False:
+        if self.filename.endswith('.csv') == False:
             msg.showerror("NO INPORT","NO CSV FILE IMPORTED")
         else:
             filenamesave = filedialog.asksaveasfilename(initialdir = "/",title = "Select file",filetypes = (("csv files","*.csv"),("all files","*.*")))
-            if ".csv" in filenamesave:
+            if filenamesave.endswith('.csv'):
                 msg.showinfo("SUCCESS","THE CSV FILE SAVED SUCCESSFULLY")
                 self.pandascheck.to_csv(filenamesave,index = False)
                 
@@ -79,7 +79,7 @@ class CSV_FILECLEANER():
             save = msg.askyesno("SAVE FILE","DO YOU WANT TO SAVE A NEW CSV FILE??")
             if save == True:
                 filenamesave = filedialog.asksaveasfilename(initialdir = "/",title = "Select file",filetypes = (("csv files","*.csv"),("all files","*.*")))
-                if ".csv" in filenamesave:
+                if filenamesave.endswith('.csv'):
                     msg.showinfo("SUCCESS","THE CSV FILE SAVED SUCCESSFULLY")
                     self.pandascheck.to_csv(filenamesave,index = False)
             else:
@@ -93,7 +93,7 @@ class CSV_FILECLEANER():
             save = msg.askyesno("SAVE FILE","DO YOU WANT TO SAVE A NEW CSV FILE??")
             if save == True:
                 filenamesave = filedialog.asksaveasfilename(initialdir = "/",title = "Select file",filetypes = (("csv files","*.csv"),("all files","*.*")))
-                if ".csv" in filenamesave:
+                if filenamesave.endswith('.csv'):
                     msg.showinfo("SUCCESS","THE CSV FILE SAVED SUCCESSFULLY")
                     self.pandascheck.to_csv(filenamesave,index = False)
             else:
@@ -111,7 +111,7 @@ class CSV_FILECLEANER():
                 save = msg.askyesno("SAVE FILE","DO YOU WANT TO SAVE A NEW CSV FILE??")
                 if save == True:
                     filenamesave = filedialog.asksaveasfilename(initialdir = "/",title = "Select file",filetypes = (("csv files","*.csv"),("all files","*.*")))
-                    if ".csv" in filenamesave:
+                    if filenamesave.endswith('.csv'):
                         msg.showinfo("SUCCESS","THE CSV FILE SAVED SUCCESSFULLY")
                         self.pandascheck.to_csv(filenamesave,index = False)
                 else:
@@ -120,7 +120,7 @@ class CSV_FILECLEANER():
     def insertf(self):
         self.filename = filedialog.askopenfilename(initialdir="/",title="Select csv file",
                                                    filetypes=(("csv files","*.csv"),("all files","*.*")))
-        if ".csv" in self.filename:
+        if self.filename.endswith('.csv'):
             self.pandascheck = pd.read_csv(self.filename)
             msg.showinfo("SUSSESSFULL INSERT","YOUR CSV FILE HAS SUCCESFULLY INSERTED")
         else:

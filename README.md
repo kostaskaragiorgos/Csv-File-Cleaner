@@ -3,7 +3,7 @@
 ## Dependencies
 
  <ul>
-  <li> Pandas </li>
+   <li> pandas (conda install -c anaconda pandas) </li>
 </ul>
 
 **Current Version**

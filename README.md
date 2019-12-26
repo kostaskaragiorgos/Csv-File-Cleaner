@@ -1,5 +1,12 @@
 # Csv-File-Cleaner
 
+## FILES
+ <ul>
+  <li> csv file cleaner keybinds.txt(keybinds file) </li>
+  <li> csv file cleaner.png ( version file) </li>
+  <li> csv_file_cleaner.py(the python file) </li>
+ </ul>
+
 ## Dependencies
 
  <ul>

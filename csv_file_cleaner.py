@@ -1,5 +1,4 @@
 
-
 from tkinter import *
 from tkinter import messagebox as msg
 from tkinter import filedialog
@@ -133,7 +132,7 @@ class CSV_FILECLEANER():
         msg.showinfo("About","CSV FILE CLEANER \nVersion 1.0")
         
     def helpmenu(self):
-        msg.showinfo("Help" , "\t      HELP \nTHE PURPUSE OF THIS APP IS TO HELP YOU CLEAN YOUR 'MESSY' CSV FILES ")
+        msg.showinfo("Help" ,"THE PURPUSE OF THIS APP IS TO HELP YOU CLEAN YOUR 'MESSY' CSV FILES ")
     
     def exitmenu(self):
         if msg.askokcancel("Quit?", "Really quit?"):

@@ -25,6 +25,8 @@ class CSV_FILECLEANER():
         self.fixnab = Button(self.master,text = "Fix Non Values ",command = self.fixnv)
         self.fixnab.pack()
         
+        #menu 
+
         self.menu = Menu(self.master)
         
         self.file_menu = Menu(self.menu,tearoff = 0)
@@ -63,6 +65,7 @@ class CSV_FILECLEANER():
         
         
     def savef(self):
+        """ saves the csv file """ 
         if self.filename.endswith('.csv') == False:
             msg.showerror("NO INPORT","NO CSV FILE IMPORTED")
         else:
@@ -72,6 +75,7 @@ class CSV_FILECLEANER():
                 self.pandascheck.to_csv(filenamesave,index = False)
                 
     def dropdp(self):
+        """ Deletes duplicates"""
         if (".csv" in self.filename) == False:
             msg.showerror("NO INPORT","NO CSV FILE IMPORTED")
         else:
@@ -85,6 +89,7 @@ class CSV_FILECLEANER():
                     self.pandascheck.to_csv(filenamesave,index = False)
             else:
                 msg.showerror("NO SAVE","NO FILE SAVED")
+
     def dropnv(self):
         if (".csv" in self.filename) == False:
             msg.showerror("NO INPORT","NO CSV FILE IMPORTED")
@@ -120,6 +125,8 @@ class CSV_FILECLEANER():
                     msg.showerror("NO SAVE","NO FILE SAVED")
                 
     def insertf(self):
+        """ inserts the csv file """
+
         self.filename = filedialog.askopenfilename(initialdir="/",title="Select csv file",
                                                    filetypes=(("csv files","*.csv"),("all files","*.*")))
         if self.filename.endswith('.csv'):

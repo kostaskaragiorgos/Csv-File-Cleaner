@@ -24,6 +24,7 @@
   <li> Insert csv file(Ctrl+O)</li>
   <li> Save csv file(Ctrl+S) </li>
   <li> Exit(Alt+F4) </li>
+  <li> Close csv() </li>
   <li> Delete duplicates(Ctrl+D) </li>
   <li> Drop Non Values(Ctrl+W) </li>
   <li> Fix Non Values(Ctrl+F)</li>

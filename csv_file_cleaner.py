@@ -66,6 +66,7 @@ class CSV_FILECLEANER():
 
     
     def closef(self):
+        """ closes the csv file """ 
         self.pandascheck = ""
         self.filename = ""
         msg.showinfo("SUCCESS","THE CSV FILE CLOSED SUCCESSFULLY")
@@ -98,6 +99,7 @@ class CSV_FILECLEANER():
                 msg.showerror("NO SAVE","NO FILE SAVED")
 
     def dropnv(self):
+        """ drops missing values """ 
         if (".csv" in self.filename) == False:
             msg.showerror("NO INPORT","NO CSV FILE IMPORTED")
         else:

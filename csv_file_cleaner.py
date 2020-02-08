@@ -32,7 +32,7 @@ class CSV_FILECLEANER():
         self.file_menu = Menu(self.menu,tearoff = 0)
         self.file_menu.add_command(label = "Insert csv file",accelerator = 'Ctrl+O',command = self.insertf)
         self.file_menu.add_command(label = "Save csv file",accelerator = 'Ctrl+S',command = self.savef)
-        self.file_menu.add_command(label = "Close csv", state="disable", command = self.closef)
+        self.file_menu.add_command(label = "Close csv", accelerator = 'Ctrl + F5', state="disable", command = self.closef)
         self.file_menu.add_command(label="Exit",accelerator= 'Alt+F4',command = self.exitmenu)
         self.menu.add_cascade(label = "File",menu=self.file_menu)
         
@@ -55,7 +55,7 @@ class CSV_FILECLEANER():
         
         self.master.bind('<Control-o>',lambda event: self.insertf())
         self.master.bind('<Control-s>',lambda event: self.savef())
-        
+        self.master.bind('<Control-F5>',lambda event: self.closef())
         self.master.bind('<Control-d>',lambda event: self.dropdp())
         self.master.bind('<Control-n>',lambda event: self.dropnv())
         self.master.bind('<Control-f>',lambda event: self.fixnv())

@@ -2,7 +2,7 @@ File menu
 ========================
 Insert csv file Ctrl + O
 Save csv file Ctrl + S
-Close csv 
+Close csv Ctrl + F5
 Exit Alt + F4
 ========================
 Edit menu

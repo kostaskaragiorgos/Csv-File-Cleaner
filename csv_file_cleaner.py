@@ -69,7 +69,8 @@ class CSV_FILECLEANER():
         self.pandascheck = ""
         self.filename = ""
         msg.showinfo("SUCCESS","THE CSV FILE CLOSED SUCCESSFULLY")
-        
+        self.file_menu.entryconfig("Close csv",state = "disable")
+
     def savef(self):
         """ saves the csv file """ 
         if self.filename.endswith('.csv') == False:
@@ -139,6 +140,7 @@ class CSV_FILECLEANER():
                                                    filetypes=(("csv files","*.csv"),("all files","*.*")))
             if self.filename.endswith('.csv'):
                 self.pandascheck = pd.read_csv(self.filename)
+                self.file_menu.entryconfig("Close csv",state = "active")
                 msg.showinfo("SUSSESSFULL INSERT","YOUR CSV FILE HAS SUCCESFULLY INSERTED")
             else:
                 msg.showerror("INSERT A CSV","YOU HAVE TO INSERT A CSV FILE")

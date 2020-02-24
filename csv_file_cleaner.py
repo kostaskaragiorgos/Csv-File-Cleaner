@@ -1,8 +1,10 @@
+"""  You can clean your csv files """
 from tkinter import Tk, Button, Menu
 from tkinter import messagebox as msg
 from tkinter import filedialog
 import pandas as pd
-class CSV_FILECLEANER():
+class CsvFileCleaner():
+    """ csv file cleaner class """
     def __init__(self, master):
         self.master = master
         self.master.title("CSV FILE CLEANER")
@@ -33,7 +35,7 @@ class CSV_FILECLEANER():
         self.menu.add_cascade(label='Edit', menu=self.edit_menu)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=self.aboutmenu)
-        self.menu.add_cascade(label="About",menu=self.about_menu)
+        self.menu.add_cascade(label="About", menu=self.about_menu)
         self.help_menu = Menu(self.menu, tearoff=0)
         self.help_menu.add_command(label="Help", accelerator='Ctrl+F1', command=self.helpmenu)
         self.menu.add_cascade(label="Help", menu=self.help_menu)
@@ -46,7 +48,7 @@ class CSV_FILECLEANER():
         self.master.bind('<Control-f>', lambda event: self.fixnv())
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
         self.master.bind('<Control-F1>', lambda event: self.helpmenu())
-        self.master.bind('<Control-i>', lambda event:self.aboutmenu())
+        self.master.bind('<Control-i>', lambda event: self.aboutmenu())
     def closef(self):
         """ closes the csv file """ 
         self.pandascheck = ""
@@ -112,11 +114,11 @@ class CSV_FILECLEANER():
                     msg.showerror("NO SAVE", "NO FILE SAVED")
     def insertf(self):
         """ inserts the csv file """
-        if (".csv" in self.filename):
+        if ".csv" in self.filename:
             msg.showerror("ERROR", "A CSV FILE IS ALREADY OPEN")
         else:
             self.filename = filedialog.askopenfilename(initialdir="/", title="Select csv file",
-                                                   filetypes=(("csv files", "*.csv"), ("all files", "*.*")))
+                                                       filetypes=(("csv files", "*.csv"), ("all files", "*.*")))
             if self.filename.endswith('.csv'):
                 self.pandascheck = pd.read_csv(self.filename)
                 self.file_menu.entryconfig("Close csv", state="active")
@@ -135,8 +137,8 @@ class CSV_FILECLEANER():
             self.master.destroy()
 def main():
     """ main function """
-    root=Tk()
-    CSV_FILECLEANER(root)
+    root = Tk()
+    CsvFileCleaner(root)
     root.mainloop()
-if __name__=='__main__':
+if __name__ == '__main__':
     main()

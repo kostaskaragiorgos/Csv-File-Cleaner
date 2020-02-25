@@ -57,7 +57,7 @@ class CsvFileCleaner():
         self.file_menu.entryconfig("Close csv", state="disable")
     def savef(self):
         """ saves the csv file """ 
-        if self.filename.endswith('.csv') == False:
+        if not self.filename.endswith('.csv'):
             msg.showerror("NO INPORT", "NO CSV FILE IMPORTED")
         else:
             filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("csv files", "*.csv"), ("all files", "*.*")))
@@ -66,7 +66,7 @@ class CsvFileCleaner():
                 self.pandascheck.to_csv(filenamesave, index=False)
     def dropdp(self):
         """ Deletes duplicates"""
-        if (".csv" in self.filename) == False:
+        if not ".csv" in self.filename:
             msg.showerror("NO INPORT", "NO CSV FILE IMPORTED")
         else:
             self.pandascheck.drop_duplicates(keep=False)
@@ -81,10 +81,10 @@ class CsvFileCleaner():
                 msg.showerror("NO SAVE", "NO FILE SAVED")
     def dropnv(self):
         """ drops missing values """ 
-        if (".csv" in self.filename) == False:
+        if not ".csv" in self.filename:
             msg.showerror("NO INPORT", "NO CSV FILE IMPORTED")
         else:
-            self.pandascheck.dropna
+            self.pandascheck.dropna()
             msg.showinfo("MISSING VALUES", "MISSING VALUES HAS SUCCESSFULLY REMOVED")
             save = msg.askyesno("SAVE FILE", "DO YOU WANT TO SAVE A NEW CSV FILE??")
             if save:
@@ -95,7 +95,8 @@ class CsvFileCleaner():
             else:
                 msg.showerror("NO SAVE", "NO FILE SAVED")
     def fixnv(self):
-        if (".csv" in self.filename) == False:
+        """ fixing missing values """
+        if  not ".csv" in self.filename:
             msg.showerror("NO INPORT", "NO CSV FILE IMPORTED")
         else:
             na = self.pandascheck.isna()

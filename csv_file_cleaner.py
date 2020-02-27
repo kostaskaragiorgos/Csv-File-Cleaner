@@ -3,6 +3,12 @@ from tkinter import Tk, Button, Menu
 from tkinter import messagebox as msg
 from tkinter import filedialog
 import pandas as pd
+def aboutmenu():
+    """ about menu function """
+    msg.showinfo("About", "CSV FILE CLEANER \nVersion 1.0")
+def helpmenu():
+    """ help menu function """
+    msg.showinfo("Help", "THE PURPUSE OF THIS APP IS TO HELP YOU CLEAN YOUR 'MESSY' CSV FILES ")
 class CsvFileCleaner():
     """ csv file cleaner class """
     def __init__(self, master):
@@ -34,10 +40,10 @@ class CsvFileCleaner():
         self.edit_menu.add_command(label='Fix Non Values', accelerator='Ctrl + F', command=self.fixnv)
         self.menu.add_cascade(label='Edit', menu=self.edit_menu)
         self.about_menu = Menu(self.menu, tearoff=0)
-        self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=self.aboutmenu)
+        self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)
         self.menu.add_cascade(label="About", menu=self.about_menu)
         self.help_menu = Menu(self.menu, tearoff=0)
-        self.help_menu.add_command(label="Help", accelerator='Ctrl+F1', command=self.helpmenu)
+        self.help_menu.add_command(label="Help", accelerator='Ctrl+F1', command=helpmenu)
         self.menu.add_cascade(label="Help", menu=self.help_menu)
         self.master.config(menu=self.menu)
         self.master.bind('<Control-o>', lambda event: self.insertf())
@@ -47,8 +53,8 @@ class CsvFileCleaner():
         self.master.bind('<Control-n>', lambda event: self.dropnv())
         self.master.bind('<Control-f>', lambda event: self.fixnv())
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
-        self.master.bind('<Control-F1>', lambda event: self.helpmenu())
-        self.master.bind('<Control-i>', lambda event: self.aboutmenu())
+        self.master.bind('<Control-F1>', lambda event: helpmenu())
+        self.master.bind('<Control-i>', lambda event: aboutmenu())
     def closef(self):
         """ closes the csv file """ 
         self.pandascheck = ""
@@ -126,12 +132,6 @@ class CsvFileCleaner():
                 msg.showinfo("SUSSESSFULL INSERT", "YOUR CSV FILE HAS SUCCESFULLY INSERTED")
             else:
                 msg.showerror("INSERT A CSV", "YOU HAVE TO INSERT A CSV FILE")
-    def aboutmenu(self):
-        """ about menu function """
-        msg.showinfo("About", "CSV FILE CLEANER \nVersion 1.0")
-    def helpmenu(self):
-        """ help menu function """
-        msg.showinfo("Help", "THE PURPUSE OF THIS APP IS TO HELP YOU CLEAN YOUR 'MESSY' CSV FILES ")
     def exitmenu(self):
         """ exit menu function"""
         if msg.askokcancel("Quit?", "Really quit?"):

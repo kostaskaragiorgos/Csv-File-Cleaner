@@ -3,6 +3,18 @@
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/) [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)
 
+# Table of contents
+
+<!--ts-->
+  * [Csv-File-Cleaner](#Csv_File_Cleaner)
+  * [Table of contents](#Table_of_contents)
+  * [Files](#FILES)
+  * [Dependencies](#Dependencies)
+  * [Current Version](#Current_Version)
+  * [Radon](#Radon)
+  * [Keybinds](#Keybinds)
+  * [License](#License)
+<!--te-->
 
 ## FILES
  <ul>

@@ -32,11 +32,11 @@
    <li> second way to install radon (pip install radon) </li>
 </ul>
 
-**Current Version**
+## Current_Version
 
 <p><img src ="csv file cleaner.png" title = "Csv File Cleaner Version"/> </p>
 
-**Radon**
+## Radon
 
 <p><img src = "radon cc csv file cleaner.png" title = "Radon cc"/> </p>
 <p><img src = "radon hal csv file cleaner.png" title = "Radon hal"/> </p>

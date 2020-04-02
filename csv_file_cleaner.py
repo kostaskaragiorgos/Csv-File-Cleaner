@@ -57,10 +57,13 @@ class CsvFileCleaner():
         self.master.bind('<Control-i>', lambda event: aboutmenu())
     def closef(self):
         """ closes the csv file """ 
-        self.pandascheck = ""
-        self.filename = ""
-        msg.showinfo("SUCCESS", "THE CSV FILE CLOSED SUCCESSFULLY")
-        self.file_menu.entryconfig("Close csv", state="disable")
+        if self.filename == "":
+            msg.showerror("ERROR", "NO FILE TO CLOSE")
+        else:
+            self.pandascheck = ""
+            self.filename = ""
+            msg.showinfo("SUCCESS", "THE CSV FILE CLOSED SUCCESSFULLY")
+            self.file_menu.entryconfig("Close csv", state="disable")
     def savef(self):
         """ saves the csv file """ 
         if not self.filename.endswith('.csv'):
@@ -76,7 +79,7 @@ class CsvFileCleaner():
             msg.showerror("NO INPORT", "NO CSV FILE IMPORTED")
         else:
             self.pandascheck.drop_duplicates(keep=False)
-            msg.showinfo("DROP DUPLICATES", "DUPLICATES HAS SUCESSFULLY DROPED")
+            msg.showinfo("DROP DUPLICATES", "DUPLICATES HAS SUCESSFULLY DROPED(Drops all the duplicates)")
             save = msg.askyesno("SAVE FILE", "DO YOU WANT TO SAVE A NEW CSV FILE??")
             if save:
                 filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("csv files", "*.csv"), ("all files", "*.*")))

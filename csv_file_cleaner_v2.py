@@ -46,6 +46,7 @@ class CsvFileCleaner():
         self.master.bind('<Control-F1>', lambda event: helpmenu())
         self.master.bind('<Control-i>', lambda event: aboutmenu())
     def dropspecific(self):
+        """ drops all duplicates from a specific column """
         if not ".csv" in self.filename:
             msg.showerror("ERROR","NO CSV TO CLOSE")
         else:
@@ -58,6 +59,7 @@ class CsvFileCleaner():
             else:
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
     def dropspecificefirst(self):
+        """ drops all duplicates except first from a specific column """
         if not ".csv" in self.filename:
             msg.showerror("ERROR","NO CSV TO CLOSE")
         else:
@@ -71,6 +73,7 @@ class CsvFileCleaner():
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
 
     def dropspecificlast(self):
+        """ drops all duplicates except last from a specific column """
         if not ".csv" in self.filename:
             msg.showerror("ERROR","NO CSV TO CLOSE")
         else:

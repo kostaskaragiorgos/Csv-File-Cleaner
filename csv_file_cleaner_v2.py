@@ -6,8 +6,10 @@ from tkinter import messagebox as msg, filedialog
 import pandas as pd
 def helpmenu():
     """ help menu funciton """
+    msg.showinfo("Help", "THE PURPUSE OF THIS APP IS TO HELP YOU CLEAN YOUR 'MESSY' CSV FILES ")
 def aboutmenu():
     """ about menu function """
+    msg.showinfo("About", "CSV FILE CLEANER \nVersion 2.0")
 class CsvFileCleaner():
     """ CsvFileCleaner Class"""
     def __init__(self, master):
@@ -41,6 +43,7 @@ class CsvFileCleaner():
         self.master.bind('<Control-F1>', lambda event: helpmenu())
         self.master.bind('<Control-i>', lambda event: aboutmenu())
     def closefile(self):
+        """ closes the csv file """
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV TO CLOSE")
         else:

@@ -28,7 +28,7 @@ class CsvFileCleaner():
         self.dup_menu.add_command(label="Delete all duplicates")
         self.dup_menu.add_command(label="Delete all duplicates except first")
         self.dup_menu.add_command(label="Delete all duplicates except last")
-        self.dup_menu.add_command(label="Delete all duplicates by specific column")
+        self.dup_menu.add_command(label="Delete all duplicates by specific column", command=self.dropspecific)
         self.dup_menu.add_command(label="Delete all duplicates except first by specific column", command=self.dropspecificefirst)
         self.dup_menu.add_command(label="Delete all duplicates except last by specific column", command=self.dropspecificlast)
         self.menu.add_cascade(label="Duplicates", menu=self.dup_menu)
@@ -45,6 +45,18 @@ class CsvFileCleaner():
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
         self.master.bind('<Control-F1>', lambda event: helpmenu())
         self.master.bind('<Control-i>', lambda event: aboutmenu())
+    def dropspecific(self):
+        if not ".csv" in self.filename:
+            msg.showerror("ERROR","NO CSV TO CLOSE")
+        else:
+            self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
+            while self.asked_column is None or self.asked_column == "":
+                self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
+            if self.asked_column in self.df.columns:
+                self.df = self.df.drop_duplicates(subset=self.asked_column, keep=False)
+                msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
+            else:
+                msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
     def dropspecificefirst(self):
         if not ".csv" in self.filename:
             msg.showerror("ERROR","NO CSV TO CLOSE")

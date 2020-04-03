@@ -30,7 +30,7 @@ class CsvFileCleaner():
         self.dup_menu.add_command(label="Delete all duplicates except last")
         self.dup_menu.add_command(label="Delete all duplicates by specific column")
         self.dup_menu.add_command(label="Delete all duplicates except first by specific column")
-        self.dup_menu.add_command(label="Delete all duplicates except last by specific column")
+        self.dup_menu.add_command(label="Delete all duplicates except last by specific column", command=self.dropspecificlast)
         self.menu.add_cascade(label="Duplicates", menu=self.dup_menu)
         self.miss_v = Menu(self.menu, tearoff=0)
         self.miss_v.add_command(label="Drop missing values", command=self.dropmissing)
@@ -45,6 +45,16 @@ class CsvFileCleaner():
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
         self.master.bind('<Control-F1>', lambda event: helpmenu())
         self.master.bind('<Control-i>', lambda event: aboutmenu())
+    def dropspecificlast(self):
+        if not ".csv" in self.filename:
+            msg.showerror("ERROR","NO CSV TO CLOSE")
+        else:
+            self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
+            while self.asked_column is None or self.asked_column == "":
+                self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
+            self.df = self.df.drop_duplicates(subset=self.asked_column, keep='last')
+
+
     def dropmissing(self):
         """ deletes the missing values(default param)"""
         if not ".csv" in self.filename:

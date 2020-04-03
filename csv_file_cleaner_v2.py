@@ -1,7 +1,7 @@
 """
 csv_file_cleaner_version_2
 """
-from tkinter import Tk, Menu
+from tkinter import Tk, Menu, simpledialog
 from tkinter import messagebox as msg, filedialog
 import pandas as pd
 def helpmenu():
@@ -52,9 +52,11 @@ class CsvFileCleaner():
             self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
             while self.asked_column is None or self.asked_column == "":
                 self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
-            self.df = self.df.drop_duplicates(subset=self.asked_column, keep='last')
-
-
+            if self.asked_column in self.df.columns:
+                self.df = self.df.drop_duplicates(subset=self.asked_column, keep='last')
+                msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
+            else:
+                msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
     def dropmissing(self):
         """ deletes the missing values(default param)"""
         if not ".csv" in self.filename:

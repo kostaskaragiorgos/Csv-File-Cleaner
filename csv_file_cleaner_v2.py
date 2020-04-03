@@ -28,9 +28,12 @@ class CsvFileCleaner():
         self.dup_menu.add_command(label="Delete all duplicates")
         self.dup_menu.add_command(label="Delete all duplicates except first")
         self.dup_menu.add_command(label="Delete all duplicates except last")
+        self.dup_menu.add_command(label="Delete all duplicates by specific column")
+        self.dup_menu.add_command(label="Delete all duplicates except first by specific column")
+        self.dup_menu.add_command(label="Delete all duplicates except last by specific column")
         self.menu.add_cascade(label="Duplicates", menu=self.dup_menu)
         self.miss_v = Menu(self.menu, tearoff=0)
-        self.miss_v.add_command(label="Drop missing values")
+        self.miss_v.add_command(label="Drop missing values", command=self.dropmissing)
         self.menu.add_cascade(label="Missing Values", menu=self.miss_v)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)
@@ -42,6 +45,13 @@ class CsvFileCleaner():
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
         self.master.bind('<Control-F1>', lambda event: helpmenu())
         self.master.bind('<Control-i>', lambda event: aboutmenu())
+    def dropmissing(self):
+        """ deletes the missing values(default param)"""
+        if not ".csv" in self.filename:
+            msg.showerror("ERROR","NO CSV TO CLOSE")
+        else:
+                self.df = self.df.dropna()
+                msg.showinfo("MISSING VALUES", "MISSING VALUES HAS SUCCESSFULLY REMOVED")
     def closefile(self):
         """ closes the csv file """
         if not ".csv" in self.filename:
@@ -57,7 +67,7 @@ class CsvFileCleaner():
             self.filename = filedialog.askopenfilename(initialdir="/", title="Select csv file",
                                                        filetypes=(("csv files", "*.csv"), ("all files", "*.*")))
             if self.filename.endswith('.csv'):
-                self.pandascheck = pd.read_csv(self.filename)
+                self.df = pd.read_csv(self.filename)
                 msg.showinfo("SUSSESSFULL INSERT", "YOUR CSV FILE HAS SUCCESFULLY INSERTED")
             else:
                 msg.showerror("INSERT A CSV", "YOU HAVE TO INSERT A CSV FILE")

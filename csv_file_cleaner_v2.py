@@ -48,7 +48,7 @@ class CsvFileCleaner():
     def dropspecific(self):
         """ drops all duplicates from a specific column """
         if not ".csv" in self.filename:
-            msg.showerror("ERROR","NO CSV TO CLOSE")
+            msg.showerror("ERROR", "NO CSV TO CLOSE")
         else:
             self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
             while self.asked_column is None or self.asked_column == "":
@@ -61,7 +61,7 @@ class CsvFileCleaner():
     def dropspecificefirst(self):
         """ drops all duplicates except first from a specific column """
         if not ".csv" in self.filename:
-            msg.showerror("ERROR","NO CSV TO CLOSE")
+            msg.showerror("ERROR", "NO CSV TO CLOSE")
         else:
             self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
             while self.asked_column is None or self.asked_column == "":
@@ -75,7 +75,7 @@ class CsvFileCleaner():
     def dropspecificlast(self):
         """ drops all duplicates except last from a specific column """
         if not ".csv" in self.filename:
-            msg.showerror("ERROR","NO CSV TO CLOSE")
+            msg.showerror("ERROR", "NO CSV TO CLOSE")
         else:
             self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
             while self.asked_column is None or self.asked_column == "":
@@ -88,10 +88,10 @@ class CsvFileCleaner():
     def dropmissing(self):
         """ deletes the missing values(default param)"""
         if not ".csv" in self.filename:
-            msg.showerror("ERROR","NO CSV TO CLOSE")
+            msg.showerror("ERROR", "NO CSV TO CLOSE")
         else:
-                self.df = self.df.dropna()
-                msg.showinfo("MISSING VALUES", "MISSING VALUES HAS SUCCESSFULLY REMOVED")
+            self.df = self.df.dropna()
+            msg.showinfo("MISSING VALUES", "MISSING VALUES HAS SUCCESSFULLY REMOVED")
     def closefile(self):
         """ closes the csv file """
         if not ".csv" in self.filename:

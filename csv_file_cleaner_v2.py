@@ -21,17 +21,17 @@ class CsvFileCleaner():
         self.menu = Menu(self.master)
         self.file_menu = Menu(self.menu, tearoff=0)
         self.file_menu.add_command(label="Insert a csv file", accelerator='Ctrl+O', command=self.insertfile)
-        self.file_menu.add_command(label="Save file")
-        self.file_menu.add_command(label="Close file", command=self.closefile)
+        self.file_menu.add_command(label="Save file", accelerator='Ctrl+S', command=self.save_file)
+        self.file_menu.add_command(label="Close file", accelerator='Ctrl+F4', command=self.closefile)
         self.file_menu.add_command(label="Exit", accelerator='Alt+F4', command=self.exitmenu)
         self.menu.add_cascade(label="File", menu=self.file_menu)
         self.dup_menu = Menu(self.menu, tearoff=0)
-        self.dup_menu.add_command(label="Delete all duplicates", command=self.delete_duplicates)
-        self.dup_menu.add_command(label="Delete all duplicates except first",command=self.delete_duplicates_no_f)
-        self.dup_menu.add_command(label="Delete all duplicates except last", command=self.delete_duplicates_no_l)
-        self.dup_menu.add_command(label="Delete all duplicates by specific column", command=self.dropspecific)
-        self.dup_menu.add_command(label="Delete all duplicates except first by specific column", command=self.dropspecificefirst)
-        self.dup_menu.add_command(label="Delete all duplicates except last by specific column", command=self.dropspecificlast)
+        self.dup_menu.add_command(label="Delete all duplicates", accelerator='Ctrl+T', command=self.delete_duplicates)
+        self.dup_menu.add_command(label="Delete all duplicates except first", accelerator='Alt+F', command=self.delete_duplicates_no_f)
+        self.dup_menu.add_command(label="Delete all duplicates except last", accelerator='Alt+L', command=self.delete_duplicates_no_l)
+        self.dup_menu.add_command(label="Delete all duplicates by specific column", accelerator='Alt+C', command=self.dropspecific)
+        self.dup_menu.add_command(label="Delete all duplicates except first by specific column",accelerator='Ctrl+B', command=self.dropspecificfirst)
+        self.dup_menu.add_command(label="Delete all duplicates except last by specific column", accelerator='Ctrl+L', command=self.dropspecificlast)
         self.menu.add_cascade(label="Duplicates", menu=self.dup_menu)
         self.miss_v = Menu(self.menu, tearoff=0)
         self.miss_v.add_command(label="Drop columns with missing values")
@@ -44,9 +44,20 @@ class CsvFileCleaner():
         self.help_menu.add_command(label="Help", accelerator='Ctrl+F1', command=helpmenu)
         self.menu.add_cascade(label="Help", menu=self.help_menu)
         self.master.config(menu=self.menu)
+        self.master.bind('<Control-o>', lambda event: self.insertfile())
+        self.master.bind('<Control-s>', lambda event: self.save_file())
+        self.master.bind('<Control-F4>', lambda event: self.closefile())
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
+        self.master.bind('<Control-t>', lambda event: self.delete_duplicates())
+        self.master.bind('<Alt-f>', lambda event: self.delete_duplicates_no_f())
+        self.master.bind('<Alt-l>', lambda event: self.delete_duplicates_no_l())
+        self.master.bind('<Alt-c>', lambda event: self.dropspecific())
+        self.master.bind('<Control-b>', lambda event: self.dropspecificfirst())
+        self.master.bind('<Control-l>', lambda event: self.dropspecificlast())
         self.master.bind('<Control-F1>', lambda event: helpmenu())
         self.master.bind('<Control-i>', lambda event: aboutmenu())
+    def save_file(self):
+        pass
     def delete_duplicates(self):
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV TO CLOSE")
@@ -79,7 +90,7 @@ class CsvFileCleaner():
                 msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
             else:
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
-    def dropspecificefirst(self):
+    def dropspecificfirst(self):
         """ drops all duplicates except first from a specific column """
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV TO CLOSE")

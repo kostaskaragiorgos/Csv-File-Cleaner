@@ -18,8 +18,8 @@
 
 ## FILES
  <ul>
-  <li> csv file cleaner keybinds.txt(keybinds file) </li>
-  <li> csv file cleaner.png ( version file) </li>
+  <li> images folder(images) </li>
+  <li> csv_file_cleaner_v2 keybinds.txt(keybinds file) </li>
   <li> csv_file_cleaner_v2.py(the python file) </li>
  </ul>
 

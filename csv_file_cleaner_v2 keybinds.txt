@@ -1,0 +1,28 @@
+File menu
+========================
+Insert a csv file Ctrl+O
+Save file Ctrl+S
+Close file Ctrl+F4
+Exit Alt+F4
+=========================
+Duplicates menu
+============================
+Delete all duplicates Ctrl+T
+Delete all duplicates except first Alt+F
+Delete all duplicates except last Alt+L
+Delete all duplicates by specific column Alt+C
+Delete all duplicates except first by specific column Ctrl+B
+Delete all duplicates except last by specific column Ctrl+L
+============================================================
+Missing Values
+======================================
+Drop columns with missing values Alt+M
+Drops rows with missing values Alt+N
+======================================
+About menu
+============
+About Ctrl+I
+============
+Help menu
+============
+Help Ctrl+F1

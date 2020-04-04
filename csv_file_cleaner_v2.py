@@ -35,7 +35,7 @@ class CsvFileCleaner():
         self.menu.add_cascade(label="Duplicates", menu=self.dup_menu)
         self.miss_v = Menu(self.menu, tearoff=0)
         self.miss_v.add_command(label="Drop columns with missing values", accelerator='Alt+M', command=self.drop_missing_col)
-        self.miss_v.add_command(label="Drops rows with missing values",accelerator='Alt+N', command=self.dropmissing)
+        self.miss_v.add_command(label="Drop rows with missing values",accelerator='Alt+N', command=self.dropmissing)
         self.menu.add_cascade(label="Missing Values", menu=self.miss_v)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)

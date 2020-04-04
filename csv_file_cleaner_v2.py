@@ -30,12 +30,12 @@ class CsvFileCleaner():
         self.dup_menu.add_command(label="Delete all duplicates except first", accelerator='Alt+F', command=self.delete_duplicates_no_f)
         self.dup_menu.add_command(label="Delete all duplicates except last", accelerator='Alt+L', command=self.delete_duplicates_no_l)
         self.dup_menu.add_command(label="Delete all duplicates by specific column", accelerator='Alt+C', command=self.dropspecific)
-        self.dup_menu.add_command(label="Delete all duplicates except first by specific column",accelerator='Ctrl+B', command=self.dropspecificfirst)
+        self.dup_menu.add_command(label="Delete all duplicates except first by specific column", accelerator='Ctrl+B', command=self.dropspecificfirst)
         self.dup_menu.add_command(label="Delete all duplicates except last by specific column", accelerator='Ctrl+L', command=self.dropspecificlast)
         self.menu.add_cascade(label="Duplicates", menu=self.dup_menu)
         self.miss_v = Menu(self.menu, tearoff=0)
-        self.miss_v.add_command(label="Drop columns with missing values")
-        self.miss_v.add_command(label="Drops rows with missing values", command=self.dropmissing)
+        self.miss_v.add_command(label="Drop columns with missing values", accelerator='Alt+M', command=self.drop_missing_col)
+        self.miss_v.add_command(label="Drops rows with missing values",accelerator='Alt+N', command=self.dropmissing)
         self.menu.add_cascade(label="Missing Values", menu=self.miss_v)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)
@@ -54,29 +54,33 @@ class CsvFileCleaner():
         self.master.bind('<Alt-c>', lambda event: self.dropspecific())
         self.master.bind('<Control-b>', lambda event: self.dropspecificfirst())
         self.master.bind('<Control-l>', lambda event: self.dropspecificlast())
+        self.master.bind('<Alt-m>', lambda event: self.drop_missing_col())
+        self.master.bind('<Alt-n>', lambda event: self.dropmissing())
         self.master.bind('<Control-F1>', lambda event: helpmenu())
         self.master.bind('<Control-i>', lambda event: aboutmenu())
     def save_file(self):
         pass
     def delete_duplicates(self):
+        """ removes duplicates """
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV TO CLOSE")
         else:
             self.df = self.df.drop_duplicates(keep=False)
             msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
     def delete_duplicates_no_l(self):
+        """ removes duplicates except last """
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV TO CLOSE")
         else:
             self.df = self.df.drop_duplicates(keep='last')
             msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
     def delete_duplicates_no_f(self):
+        """ removes duplicates except first """
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV TO CLOSE")
         else:
             self.df = self.df.drop_duplicates(keep='first')
             msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
-
     def dropspecific(self):
         """ drops all duplicates from a specific column """
         if not ".csv" in self.filename:
@@ -103,7 +107,6 @@ class CsvFileCleaner():
                 msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
             else:
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
-
     def dropspecificlast(self):
         """ drops all duplicates except last from a specific column """
         if not ".csv" in self.filename:

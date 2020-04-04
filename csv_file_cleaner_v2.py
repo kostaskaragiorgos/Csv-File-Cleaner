@@ -34,7 +34,8 @@ class CsvFileCleaner():
         self.dup_menu.add_command(label="Delete all duplicates except last by specific column", command=self.dropspecificlast)
         self.menu.add_cascade(label="Duplicates", menu=self.dup_menu)
         self.miss_v = Menu(self.menu, tearoff=0)
-        self.miss_v.add_command(label="Drop missing values", command=self.dropmissing)
+        self.miss_v.add_command(label="Drop columns with missing values")
+        self.miss_v.add_command(label="Drops rows with missing values", command=self.dropmissing)
         self.menu.add_cascade(label="Missing Values", menu=self.miss_v)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)
@@ -105,13 +106,20 @@ class CsvFileCleaner():
                 msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
             else:
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
+    def drop_missing_col(self):
+        """ deletes columns with missing values"""
+        if not ".csv" in self.filename:
+            msg.showerror("ERROR", "NO CSV TO CLOSE")
+        else:
+            self.df = self.df.dropna(axis=1)
+            msg.showinfo("MISSING VALUES", "COLUMNS WITH MISSING VALUES HAS SUCCESSFULLY REMOVED")
     def dropmissing(self):
-        """ deletes the missing values(default param)"""
+        """ deletes rows with missing values"""
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV TO CLOSE")
         else:
             self.df = self.df.dropna()
-            msg.showinfo("MISSING VALUES", "MISSING VALUES HAS SUCCESSFULLY REMOVED")
+            msg.showinfo("MISSING VALUES", "ROWS WITH MISSING VALUES HAS SUCCESSFULLY REMOVED")
     def closefile(self):
         """ closes the csv file """
         if not ".csv" in self.filename:

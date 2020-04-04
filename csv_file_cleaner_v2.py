@@ -21,13 +21,14 @@ class CsvFileCleaner():
         self.menu = Menu(self.master)
         self.file_menu = Menu(self.menu, tearoff=0)
         self.file_menu.add_command(label="Insert a csv file", accelerator='Ctrl+O', command=self.insertfile)
+        self.file_menu.add_command(label="Save file")
         self.file_menu.add_command(label="Close file", command=self.closefile)
         self.file_menu.add_command(label="Exit", accelerator='Alt+F4', command=self.exitmenu)
         self.menu.add_cascade(label="File", menu=self.file_menu)
         self.dup_menu = Menu(self.menu, tearoff=0)
-        self.dup_menu.add_command(label="Delete all duplicates")
-        self.dup_menu.add_command(label="Delete all duplicates except first")
-        self.dup_menu.add_command(label="Delete all duplicates except last")
+        self.dup_menu.add_command(label="Delete all duplicates", command=self.delete_duplicates)
+        self.dup_menu.add_command(label="Delete all duplicates except first",command=self.delete_duplicates_no_f)
+        self.dup_menu.add_command(label="Delete all duplicates except last", command=self.delete_duplicates_no_l)
         self.dup_menu.add_command(label="Delete all duplicates by specific column", command=self.dropspecific)
         self.dup_menu.add_command(label="Delete all duplicates except first by specific column", command=self.dropspecificefirst)
         self.dup_menu.add_command(label="Delete all duplicates except last by specific column", command=self.dropspecificlast)
@@ -45,6 +46,25 @@ class CsvFileCleaner():
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
         self.master.bind('<Control-F1>', lambda event: helpmenu())
         self.master.bind('<Control-i>', lambda event: aboutmenu())
+    def delete_duplicates(self):
+        if not ".csv" in self.filename:
+            msg.showerror("ERROR", "NO CSV TO CLOSE")
+        else:
+            self.df = self.df.drop_duplicates(keep=False)
+            msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
+    def delete_duplicates_no_l(self):
+        if not ".csv" in self.filename:
+            msg.showerror("ERROR", "NO CSV TO CLOSE")
+        else:
+            self.df = self.df.drop_duplicates(keep='last')
+            msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
+    def delete_duplicates_no_f(self):
+        if not ".csv" in self.filename:
+            msg.showerror("ERROR", "NO CSV TO CLOSE")
+        else:
+            self.df = self.df.drop_duplicates(keep='first')
+            msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
+
     def dropspecific(self):
         """ drops all duplicates from a specific column """
         if not ".csv" in self.filename:

@@ -76,21 +76,21 @@ class CsvFileCleaner():
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV TO CLOSE")
         else:
-            self.df = self.df.drop_duplicates(keep=False)
+            self.df.drop_duplicates(keep=False, inplace=True)
             msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
     def delete_duplicates_no_l(self):
         """ removes duplicates except last """
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV TO CLOSE")
         else:
-            self.df = self.df.drop_duplicates(keep='last')
+            self.df.drop_duplicates(keep='last', inplace=True)
             msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
     def delete_duplicates_no_f(self):
         """ removes duplicates except first """
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV TO CLOSE")
         else:
-            self.df = self.df.drop_duplicates(keep='first')
+            self.df.drop_duplicates(keep='first', inplace=True)
             msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
     def dropspecific(self):
         """ drops all duplicates from a specific column """
@@ -101,7 +101,7 @@ class CsvFileCleaner():
             while self.asked_column is None or self.asked_column == "":
                 self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
             if self.asked_column in self.df.columns:
-                self.df = self.df.drop_duplicates(subset=self.asked_column, keep=False)
+                self.df.drop_duplicates(subset=self.asked_column, keep=False, inplace=True)
                 msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
             else:
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
@@ -114,7 +114,7 @@ class CsvFileCleaner():
             while self.asked_column is None or self.asked_column == "":
                 self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
             if self.asked_column in self.df.columns:
-                self.df = self.df.drop_duplicates(subset=self.asked_column, keep='first')
+                self.df.drop_duplicates(subset=self.asked_column, keep='first', inplace=True)
                 msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
             else:
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
@@ -127,7 +127,7 @@ class CsvFileCleaner():
             while self.asked_column is None or self.asked_column == "":
                 self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
             if self.asked_column in self.df.columns:
-                self.df = self.df.drop_duplicates(subset=self.asked_column, keep='last')
+                self.df.drop_duplicates(subset=self.asked_column, keep='last', inplace=True)
                 msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
             else:
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
@@ -136,14 +136,14 @@ class CsvFileCleaner():
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV TO CLOSE")
         else:
-            self.df = self.df.dropna(axis=1)
+            self.df.dropna(axis=1,inplace=True)
             msg.showinfo("MISSING VALUES", "COLUMNS WITH MISSING VALUES HAS SUCCESSFULLY REMOVED")
     def dropmissing(self):
         """ deletes rows with missing values"""
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV TO CLOSE")
         else:
-            self.df = self.df.dropna()
+            self.df.dropna(inplace=True)
             msg.showinfo("MISSING VALUES", "ROWS WITH MISSING VALUES HAS SUCCESSFULLY REMOVED")
     def closefile(self):
         """ closes the csv file """

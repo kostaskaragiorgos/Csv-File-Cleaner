@@ -8,7 +8,7 @@
 <!--ts-->
   * [Csv-File-Cleaner](#Csv_File_Cleaner)
   * [Table of contents](#Table_of_contents)
-  * [Files](#FILES)
+  * [Files/Folders](#Files/Folders)
   * [Dependencies](#Dependencies)
   * [Current Version](#Current_Version)
   * [Radon](#Radon)
@@ -16,8 +16,9 @@
   * [License](#License)
 <!--te-->
 
-## FILES
+## Files/Folders
  <ul>
+  <li> doc (documentation file) </li>
   <li> images folder(images) </li>
   <li> csv_file_cleaner_v2 keybinds.txt(keybinds file) </li>
   <li> csv_file_cleaner_v2.py(the python file) </li>

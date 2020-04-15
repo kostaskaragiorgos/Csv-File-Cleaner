@@ -34,15 +34,39 @@ You press ok to close the app or cancel if you don't want
 
 ## Delete all duplicates
 
+<p><img src="doc images/duplicates/delete all duplicates menu.png"/></p>
+
+<p><img src="doc images/duplicates/no imported error.png"/></p>
+
 ## Delete all duplicates except first
+
+<p><img src="doc images/duplicates/delete all duplicates except first menu.png"/></p>
+
+<p><img src="doc images/duplicates/no imported error.png"/></p>
 
 ## Delete all duplicates except last
 
+<p><img src="doc images/duplicates/delete all duplicates except last menu.png"/></p>
+
+<p><img src="doc images/duplicates/no imported error.png"/></p>
+
 ## Delete all duplicates by specific column
+
+<p><img src="doc images/duplicates/delete all duplicates by specific column menu.png"/></p>
+
+<p><img src="doc images/duplicates/no imported error.png"/></p>
 
 ## Delete all duplicates except first by specific column
 
+<p><img src="doc images/duplicates/delete all duplicates except first by specific column menu.png"/></p>
+
+<p><img src="doc images/duplicates/no imported error.png"/></p>
+
 ## Delete all duplicates except last by specific column
+
+<p><img src="doc images/duplicates/delete all duplicates except last by specific column menu.png"/></p>
+
+<p><img src="doc images/duplicates/no imported error.png"/></p>
 
 # MISSING VALUES MENU
 

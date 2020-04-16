@@ -153,6 +153,11 @@ if there is no imported file an error message pops up
 
 <p><img src="doc images/missing values/no imported error.png"/></p>
 
+
+else an success message window pops up 
+
+<p><img src="doc images/missing values/columns missing.png"/></p>
+
 ## Drop rows with missing values
 
 You can drop rows with missing values using Missing values --> Drop rows with missing values or using alt + n keybind
@@ -162,3 +167,7 @@ You can drop rows with missing values using Missing values --> Drop rows with mi
 if there is no imported file an error message pops up
 
 <p><img src="doc images/missing values/no imported error.png"/></p>
+
+else an success message window pops up 
+
+<p><img src="doc images/missing values/rows missing.png"/></p>

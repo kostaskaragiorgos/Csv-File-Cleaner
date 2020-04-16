@@ -11,6 +11,7 @@
   * [Files/Folders](#Files/Folders)
   * [Dependencies](#Dependencies)
   * [Current Version](#Current_Version)
+  * [Documentation](#Documentation)
   * [Radon](#Radon)
   * [Keybinds](#Keybinds)
   * [License](#License)
@@ -36,6 +37,10 @@
 ## Current_Version
 
 <p><img src ="images/csv_file_cleaner_v2.png" title = "Csv File Cleaner Version"/> </p>
+
+## Documentation
+
+All project documentation is located in the `./doc`  folder.
 
 ## Radon
 

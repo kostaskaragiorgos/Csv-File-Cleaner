@@ -111,19 +111,32 @@ else a success message pops up
 
 ## Delete all duplicates by specific column
 
+You can delete all duplicates by specific column Duplicates --> Delete all duplicates by specific column or using Ctrl+c keybind
+
 <p><img src="doc images/duplicates/delete all duplicates by specific column menu.png"/></p>
+
+if there is no imported file an error message pops up
 
 <p><img src="doc images/duplicates/no imported error.png"/></p>
 
 ## Delete all duplicates except first by specific column
 
+You can delete all duplicates except first by specific column Duplicates --> Delete all duplicates by except first specific column or using Ctrl+b keybind
+
 <p><img src="doc images/duplicates/delete all duplicates except first by specific column menu.png"/></p>
+
+if there is no imported file an error message pops up
 
 <p><img src="doc images/duplicates/no imported error.png"/></p>
 
 ## Delete all duplicates except last by specific column
 
+
+You can delete all duplicates  except last by specific column Duplicates --> Delete all duplicates except last by specific column or using Ctrl+b keybind
+
 <p><img src="doc images/duplicates/delete all duplicates except last by specific column menu.png"/></p>
+
+if there is no imported file an error message pops up
 
 <p><img src="doc images/duplicates/no imported error.png"/></p>
 
@@ -131,12 +144,21 @@ else a success message pops up
 
 ## Drop columns with missing values
 
+You can drop columns with missing values using Missing values --> Drop columns with missing values or using alt + m keybind
+
+
 <p><img src="doc images/missing values/drop columns with missing values menu.png"/></p>
+
+if there is no imported file an error message pops up
 
 <p><img src="doc images/missing values/no imported error.png"/></p>
 
 ## Drop rows with missing values
 
+You can drop rows with missing values using Missing values --> Drop rows with missing values or using alt + n keybind
+
 <p><img src="doc images/missing values/drop rows with missing values.png"/></p>
+
+if there is no imported file an error message pops up
 
 <p><img src="doc images/missing values/no imported error.png"/></p>

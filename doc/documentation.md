@@ -119,6 +119,18 @@ if there is no imported file an error message pops up
 
 <p><img src="doc images/duplicates/no imported error.png"/></p>
 
+else a text field pops up where you have to enter the name of the column of which you want to delete duplicates
+
+<p><img src="doc images/duplicates/enter column name text.png"/></p>
+
+if you enter a wrong column name an error window pops up
+
+<p><img src="doc images/duplicates/no such column.png"/></p>
+
+else a success message pops up
+
+<p><img src ="doc images/duplicates/delete all duplicates success.png" title="Delete duplicates"/></p>
+
 ## Delete all duplicates except first by specific column
 
 You can delete all duplicates except first by specific column Duplicates --> Delete all duplicates by except first specific column or using Ctrl+b keybind
@@ -128,6 +140,19 @@ You can delete all duplicates except first by specific column Duplicates --> Del
 if there is no imported file an error message pops up
 
 <p><img src="doc images/duplicates/no imported error.png"/></p>
+
+else a text field pops up where you have to enter the name of the column of which you want to delete duplicates
+
+<p><img src="doc images/duplicates/enter column name text.png"/></p>
+
+if you enter a wrong column name an error window pops up
+
+<p><img src="doc images/duplicates/no such column.png"/></p>
+
+else a success message pops up
+
+<p><img src ="doc images/duplicates/delete all duplicates success.png" title="Delete duplicates"/></p>
+
 
 ## Delete all duplicates except last by specific column
 
@@ -139,6 +164,18 @@ You can delete all duplicates  except last by specific column Duplicates --> Del
 if there is no imported file an error message pops up
 
 <p><img src="doc images/duplicates/no imported error.png"/></p>
+
+else a text field pops up where you have to enter the name of the column of which you want to delete duplicates
+
+<p><img src="doc images/duplicates/enter column name text.png"/></p>
+
+if you enter a wrong column name an error window pops up
+
+<p><img src="doc images/duplicates/no such column.png"/></p>
+
+else a success message pops up
+
+<p><img src ="doc images/duplicates/delete all duplicates success.png" title="Delete duplicates"/></p>
 
 # MISSING VALUES MENU
 

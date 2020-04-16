@@ -161,7 +161,7 @@ class CsvFileCleaner():
                                                        filetypes=(("csv files", "*.csv"), ("all files", "*.*")))
             if self.filename.endswith('.csv'):
                 self.df = pd.read_csv(self.filename)
-                msg.showinfo("SUSSESSFULL INSERT", "YOUR CSV FILE HAS SUCCESFULLY INSERTED")
+                msg.showinfo("SUCCESSFUL INSERTION", "YOUR CSV FILE HAS SUCCESFULLY INSERTED")
             else:
                 msg.showerror("INSERT A CSV", "YOU HAVE TO INSERT A CSV FILE")
     def exitmenu(self):

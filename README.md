@@ -19,8 +19,8 @@
 
 ## Files/Folders
  <ul>
-  <li> doc (documentation file) </li>
-  <li> images folder(images) </li>
+  <li> doc (documentation folder) </li>
+  <li> images folder(images folder) </li>
   <li> csv_file_cleaner_v2 keybinds.txt(keybinds file) </li>
   <li> csv_file_cleaner_v2.py(the python file) </li>
  </ul>

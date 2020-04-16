@@ -48,6 +48,9 @@ if there is no open csv file an error message pops up
 
 <p><img src = "doc images/file/no file to close error.png" title="No fie to close"/></p>
 
+else a success message pops up 
+
+<p><img src="doc images/file/close success.png" title="close successful"/></p>
 
 
 ## Exit
@@ -66,21 +69,45 @@ You press ok to close the app or cancel if you don't want
 
 ## Delete all duplicates
 
+You can delete all duplicates using Duplicates --> Delete all duplicates or using Ctrl + t keybind
+
 <p><img src="doc images/duplicates/delete all duplicates menu.png"/></p>
 
+if there is no imported file an error message pops up
+
 <p><img src="doc images/duplicates/no imported error.png"/></p>
+
+else a success message pops up
+
+<p><img src ="doc images/duplicates/delete all duplicates success.png" title="Delete duplicates"/></p>
 
 ## Delete all duplicates except first
 
+You can delete all duplicates except first using Duplicates --> Delete all duplicates except first or using Ctrl+f keybind
+
 <p><img src="doc images/duplicates/delete all duplicates except first menu.png"/></p>
 
+if there is no imported file an error message pops up
+
 <p><img src="doc images/duplicates/no imported error.png"/></p>
+
+else a success message pops up
+
+<p><img src ="doc images/duplicates/delete all duplicates success.png" title="Delete duplicates"/></p>
 
 ## Delete all duplicates except last
 
+You can delete all duplicates except first using Duplicates --> Delete all duplicates except last or using Ctrl+l keybind
+
 <p><img src="doc images/duplicates/delete all duplicates except last menu.png"/></p>
 
+if there is no imported file an error message pops up
+
 <p><img src="doc images/duplicates/no imported error.png"/></p>
+
+else a success message pops up
+
+<p><img src ="doc images/duplicates/delete all duplicates success.png" title="Delete duplicates"/></p>
 
 ## Delete all duplicates by specific column
 

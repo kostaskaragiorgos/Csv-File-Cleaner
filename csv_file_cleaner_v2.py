@@ -29,9 +29,9 @@ class CsvFileCleaner():
         self.dup_menu.add_command(label="Delete all duplicates", accelerator='Ctrl+T', command= lambda: self.delete_duplicates(False))
         self.dup_menu.add_command(label="Delete all duplicates except first", accelerator='Alt+F', command= lambda: self.delete_duplicates('first'))
         self.dup_menu.add_command(label="Delete all duplicates except last", accelerator='Alt+L', command= lambda: self.delete_duplicates('last'))
-        self.dup_menu.add_command(label="Delete all duplicates by specific column", accelerator='Alt+C', command=self.dropspecific)
-        self.dup_menu.add_command(label="Delete all duplicates except first by specific column", accelerator='Ctrl+B', command=self.dropspecificfirst)
-        self.dup_menu.add_command(label="Delete all duplicates except last by specific column", accelerator='Ctrl+L', command=self.dropspecificlast)
+        self.dup_menu.add_command(label="Delete all duplicates by specific column", accelerator='Alt+C', command=lambda: self.dropspecific(False))
+        self.dup_menu.add_command(label="Delete all duplicates except first by specific column", accelerator='Ctrl+B', command=lambda: self.dropspecific('first'))
+        self.dup_menu.add_command(label="Delete all duplicates except last by specific column", accelerator='Ctrl+L', command=lambda: self.dropspecific('last'))
         self.menu.add_cascade(label="Duplicates", menu=self.dup_menu)
         self.miss_v = Menu(self.menu, tearoff=0)
         self.miss_v.add_command(label="Drop columns with missing values", accelerator='Alt+M', command=self.drop_missing_col)
@@ -51,9 +51,9 @@ class CsvFileCleaner():
         self.master.bind('<Control-t>', lambda event: self.delete_duplicates(False))
         self.master.bind('<Alt-f>', lambda event: self.delete_duplicates('first'))
         self.master.bind('<Alt-l>', lambda event: self.delete_duplicates('last'))
-        self.master.bind('<Alt-c>', lambda event: self.dropspecific())
-        self.master.bind('<Control-b>', lambda event: self.dropspecificfirst())
-        self.master.bind('<Control-l>', lambda event: self.dropspecificlast())
+        self.master.bind('<Alt-c>', lambda event: self.dropspecific(False))
+        self.master.bind('<Control-b>', lambda event: self.dropspecific('first'))
+        self.master.bind('<Control-l>', lambda event: self.dropspecific('last'))
         self.master.bind('<Alt-m>', lambda event: self.drop_missing_col())
         self.master.bind('<Alt-n>', lambda event: self.dropmissing())
         self.master.bind('<Control-F1>', lambda event: helpmenu())
@@ -78,7 +78,7 @@ class CsvFileCleaner():
         else:
             self.df.drop_duplicates(keep=keep, inplace=True)
             msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
-    def dropspecific(self):
+    def dropspecific(self, keep):
         """ drops all duplicates from a specific column """
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
@@ -87,33 +87,7 @@ class CsvFileCleaner():
             while self.asked_column is None or self.asked_column == "":
                 self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
             if self.asked_column in self.df.columns:
-                self.df.drop_duplicates(subset=self.asked_column, keep=False, inplace=True)
-                msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
-            else:
-                msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
-    def dropspecificfirst(self):
-        """ drops all duplicates except first from a specific column """
-        if not ".csv" in self.filename:
-            msg.showerror("ERROR", "NO CSV IMPORTED")
-        else:
-            self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
-            while self.asked_column is None or self.asked_column == "":
-                self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
-            if self.asked_column in self.df.columns:
-                self.df.drop_duplicates(subset=self.asked_column, keep='first', inplace=True)
-                msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
-            else:
-                msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
-    def dropspecificlast(self):
-        """ drops all duplicates except last from a specific column """
-        if not ".csv" in self.filename:
-            msg.showerror("ERROR", "NO CSV IMPORTED")
-        else:
-            self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
-            while self.asked_column is None or self.asked_column == "":
-                self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
-            if self.asked_column in self.df.columns:
-                self.df.drop_duplicates(subset=self.asked_column, keep='last', inplace=True)
+                self.df.drop_duplicates(subset=self.asked_column, keep=keep, inplace=True)
                 msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
             else:
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")

@@ -34,8 +34,8 @@ class CsvFileCleaner():
         self.dup_menu.add_command(label="Delete all duplicates except last by specific column", accelerator='Ctrl+L', command=lambda: self.dropspecific('last'))
         self.menu.add_cascade(label="Duplicates", menu=self.dup_menu)
         self.miss_v = Menu(self.menu, tearoff=0)
-        self.miss_v.add_command(label="Drop columns with missing values", accelerator='Alt+M', command=self.drop_missing_col)
-        self.miss_v.add_command(label="Drop rows with missing values", accelerator='Alt+N', command=self.dropmissing)
+        self.miss_v.add_command(label="Drop columns with missing values", accelerator='Alt+M', command=lambda: self.drop_missing(1))
+        self.miss_v.add_command(label="Drop rows with missing values", accelerator='Alt+N', command=lambda: self.drop_missing(0))
         self.menu.add_cascade(label="Missing Values", menu=self.miss_v)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)
@@ -54,8 +54,8 @@ class CsvFileCleaner():
         self.master.bind('<Alt-c>', lambda event: self.dropspecific(False))
         self.master.bind('<Control-b>', lambda event: self.dropspecific('first'))
         self.master.bind('<Control-l>', lambda event: self.dropspecific('last'))
-        self.master.bind('<Alt-m>', lambda event: self.drop_missing_col())
-        self.master.bind('<Alt-n>', lambda event: self.dropmissing())
+        self.master.bind('<Alt-m>', lambda event: self.drop_missing(1))
+        self.master.bind('<Alt-n>', lambda event: self.drop_missing(0))
         self.master.bind('<Control-F1>', lambda event: helpmenu())
         self.master.bind('<Control-i>', lambda event: aboutmenu())
     def save_file(self):
@@ -91,20 +91,13 @@ class CsvFileCleaner():
                 msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
             else:
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
-    def drop_missing_col(self):
-        """ deletes columns with missing values"""
+    def drop_missing(self, axis):
+        """ deletes columns or rows with missing values"""
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
-            self.df.dropna(axis=1, inplace=True)
-            msg.showinfo("MISSING VALUES", "COLUMNS WITH MISSING VALUES HAS SUCCESSFULLY REMOVED")
-    def dropmissing(self):
-        """ deletes rows with missing values"""
-        if not ".csv" in self.filename:
-            msg.showerror("ERROR", "NO CSV IMPORTED")
-        else:
-            self.df.dropna(inplace=True)
-            msg.showinfo("MISSING VALUES", "ROWS WITH MISSING VALUES HAS SUCCESSFULLY REMOVED")
+            self.df.dropna(axis=axis, inplace=True)
+            msg.showinfo("MISSING VALUES", "MISSING VALUES HAS SUCCESSFULLY REMOVED")
     def closefile(self):
         """ closes the csv file """
         if not ".csv" in self.filename:

@@ -78,14 +78,16 @@ class CsvFileCleaner():
         else:
             self.df.drop_duplicates(keep=keep, inplace=True)
             msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
+    def drop_specific_user_input(self):
+        self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
+        while self.asked_column is None or self.asked_column == "":
+            self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
     def dropspecific(self, keep):
         """ drops all duplicates from a specific column """
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
-            self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
-            while self.asked_column is None or self.asked_column == "":
-                self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
+            self.drop_specific_user_input()           
             if self.asked_column in self.df.columns:
                 self.df.drop_duplicates(subset=self.asked_column, keep=keep, inplace=True)
                 msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")

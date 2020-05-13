@@ -107,6 +107,12 @@ class CsvFileCleaner():
         else:
             self.filename = ""
             msg.showinfo("SUSSESS", "YOUR CSV FILE HAS SUCCESFULLY CLOSED")
+    def checkfile(self):
+        if self.filename.endswith('.csv'):
+            self.df = pd.read_csv(self.filename)
+            msg.showinfo("SUCCESSFUL INSERTION", "YOUR CSV FILE HAS SUCCESFULLY INSERTED")
+        else:
+            msg.showerror("INSERT A CSV", "YOU HAVE TO INSERT A CSV FILE")
     def insertfile(self):
         """ inserts the csv file """
         if ".csv" in self.filename:
@@ -114,11 +120,7 @@ class CsvFileCleaner():
         else:
             self.filename = filedialog.askopenfilename(initialdir="/", title="Select csv file",
                                                        filetypes=(("csv files", "*.csv"), ("all files", "*.*")))
-            if self.filename.endswith('.csv'):
-                self.df = pd.read_csv(self.filename)
-                msg.showinfo("SUCCESSFUL INSERTION", "YOUR CSV FILE HAS SUCCESFULLY INSERTED")
-            else:
-                msg.showerror("INSERT A CSV", "YOU HAVE TO INSERT A CSV FILE")
+            self.checkfile()
     def exitmenu(self):
         """ exit menu function """
         if msg.askokcancel("Quit?", "Really quit?"):

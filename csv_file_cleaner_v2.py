@@ -58,19 +58,23 @@ class CsvFileCleaner():
         self.master.bind('<Alt-n>', lambda event: self.drop_missing(0))
         self.master.bind('<Control-F1>', lambda event: helpmenu())
         self.master.bind('<Control-i>', lambda event: aboutmenu())
+    def savefunction(self, save):
+        if save:
+            filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("csv files", "*.csv"), ("all files", "*.*")))
+            if filenamesave.endswith('.csv'):
+                msg.showinfo("SUCCESS", "THE CSV FILE SAVED SUCCESSFULLY")
+                self.df.to_csv(filenamesave, index=False)
+            else:
+                msg.showerror("NO SAVE", "FILE EXTENSION NEEDS TO BE .CSV")
+        else:
+            msg.showerror("NO SAVE", "NO FILE SAVED")
     def save_file(self):
         """ saves the new csv file"""
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV TO SAVE")
         else:
             save = msg.askyesno("SAVE FILE", "DO YOU WANT TO SAVE A NEW CSV FILE??")
-            if save:
-                filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("csv files", "*.csv"), ("all files", "*.*")))
-                if filenamesave.endswith('.csv'):
-                    msg.showinfo("SUCCESS", "THE CSV FILE SAVED SUCCESSFULLY")
-                    self.df.to_csv(filenamesave, index=False)
-            else:
-                msg.showerror("NO SAVE", "NO FILE SAVED")
+            self.savefunction(save)
     def delete_duplicates(self, keep):
         """ removes duplicates """
         if not ".csv" in self.filename:

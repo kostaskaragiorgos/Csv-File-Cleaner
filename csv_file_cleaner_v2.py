@@ -59,6 +59,7 @@ class CsvFileCleaner():
         self.master.bind('<Control-F1>', lambda event: helpmenu())
         self.master.bind('<Control-i>', lambda event: aboutmenu())
     def savefunction(self, save):
+        """ saves the csv """
         if save:
             filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("csv files", "*.csv"), ("all files", "*.*")))
             if filenamesave.endswith('.csv'):
@@ -83,6 +84,7 @@ class CsvFileCleaner():
             self.df.drop_duplicates(keep=keep, inplace=True)
             msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
     def drop_specific_user_input(self):
+        """ user enters the name of the column to drop"""
         self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
         while self.asked_column is None or self.asked_column == "":
             self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
@@ -112,6 +114,7 @@ class CsvFileCleaner():
             self.filename = ""
             msg.showinfo("SUSSESS", "YOUR CSV FILE HAS SUCCESFULLY CLOSED")
     def checkfile(self):
+        """ checks if inserted file is a csv """
         if self.filename.endswith('.csv'):
             self.df = pd.read_csv(self.filename)
             msg.showinfo("SUCCESSFUL INSERTION", "YOUR CSV FILE HAS SUCCESFULLY INSERTED")
@@ -136,3 +139,4 @@ def main():
     root.mainloop()
 if __name__ == '__main__':
     main()
+    

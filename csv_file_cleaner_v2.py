@@ -20,21 +20,37 @@ class CsvFileCleaner():
         self.filename = ""
         self.menu = Menu(self.master)
         self.file_menu = Menu(self.menu, tearoff=0)
-        self.file_menu.add_command(label="Insert a csv file", accelerator='Ctrl+O', command=self.insertfile)
+        self.file_menu.add_command(label="Insert a csv file",
+                                   accelerator='Ctrl+O', command=self.insertfile)
         self.file_menu.add_command(label="Save file", accelerator='Ctrl+S', command=self.save_file)
-        self.file_menu.add_command(label="Close file", accelerator='Ctrl+F4', command=self.closefile)
+        self.file_menu.add_command(label="Close file",
+                                   accelerator='Ctrl+F4', command=self.closefile)
         self.file_menu.add_command(label="Exit", accelerator='Alt+F4', command=self.exitmenu)
         self.menu.add_cascade(label="File", menu=self.file_menu)
         self.dup_menu = Menu(self.menu, tearoff=0)
-        self.dup_menu.add_command(label="Delete all duplicates", accelerator='Ctrl+T', command=lambda: self.delete_duplicates(False))
-        self.dup_menu.add_command(label="Delete all duplicates except first", accelerator='Alt+F', command=lambda: self.delete_duplicates('first'))
-        self.dup_menu.add_command(label="Delete all duplicates except last", accelerator='Alt+L', command=lambda: self.delete_duplicates('last'))
-        self.dup_menu.add_command(label="Delete all duplicates by specific column", accelerator='Alt+C', command=lambda: self.dropspecific(False))
-        self.dup_menu.add_command(label="Delete all duplicates except first by specific column", accelerator='Ctrl+B', command=lambda: self.dropspecific('first'))
-        self.dup_menu.add_command(label="Delete all duplicates except last by specific column", accelerator='Ctrl+L', command=lambda: self.dropspecific('last'))
+        self.dup_menu.add_command(label="Delete all duplicates",
+                                  accelerator='Ctrl+T',
+                                  command=lambda: self.delete_duplicates(False))
+        self.dup_menu.add_command(label="Delete all duplicates except first",
+                                  accelerator='Alt+F',
+                                  command=lambda: self.delete_duplicates('first'))
+        self.dup_menu.add_command(label="Delete all duplicates except last",
+                                  accelerator='Alt+L',
+                                  command=lambda: self.delete_duplicates('last'))
+        self.dup_menu.add_command(label="Delete all duplicates by specific column",
+                                  accelerator='Alt+C',
+                                  command=lambda: self.dropspecific(False))
+        self.dup_menu.add_command(label="Delete all duplicates except first by specific column",
+                                  accelerator='Ctrl+B',
+                                  command=lambda: self.dropspecific('first'))
+        self.dup_menu.add_command(label="Delete all duplicates except last by specific column",
+                                  accelerator='Ctrl+L',
+                                  command=lambda: self.dropspecific('last'))
         self.menu.add_cascade(label="Duplicates", menu=self.dup_menu)
         self.miss_v = Menu(self.menu, tearoff=0)
-        self.miss_v.add_command(label="Drop columns with missing values", accelerator='Alt+M', command=lambda: self.drop_missing(1))
+        self.miss_v.add_command(label="Drop columns with missing values",
+                                accelerator='Alt+M',
+                                command=lambda: self.drop_missing(1))
         self.miss_v.add_command(label="Drop rows with missing values", accelerator='Alt+N', command=lambda: self.drop_missing(0))
         self.menu.add_cascade(label="Missing Values", menu=self.miss_v)
         self.about_menu = Menu(self.menu, tearoff=0)

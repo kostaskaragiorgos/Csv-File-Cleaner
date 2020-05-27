@@ -74,15 +74,20 @@ class CsvFileCleaner():
         self.master.bind('<Alt-n>', lambda event: self.drop_missing(0))
         self.master.bind('<Control-F1>', lambda event: helpmenu())
         self.master.bind('<Control-i>', lambda event: aboutmenu())
+    def checkifcsv(self, filenamesave):
+        """ checks if the inserted file is a csv file """                                                           
+        if filenamesave.endswith('.csv'):
+            msg.showinfo("SUCCESS", "THE CSV FILE SAVED SUCCESSFULLY")
+            self.df.to_csv(filenamesave, index=False)
+        else:
+            msg.showerror("NO SAVE", "FILE EXTENSION NEEDS TO BE .CSV")
     def savefunction(self, save):
         """ saves the csv """
         if save:
-            filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file", filetypes=(("csv files", "*.csv"), ("all files", "*.*")))
-            if filenamesave.endswith('.csv'):
-                msg.showinfo("SUCCESS", "THE CSV FILE SAVED SUCCESSFULLY")
-                self.df.to_csv(filenamesave, index=False)
-            else:
-                msg.showerror("NO SAVE", "FILE EXTENSION NEEDS TO BE .CSV")
+            filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file",
+                                                        filetypes=(("csv files", "*.csv"),
+                                                                    ("all files", "*.*")))
+            self.checkifcsv(filenamesave)
         else:
             msg.showerror("NO SAVE", "NO FILE SAVED")
     def save_file(self):

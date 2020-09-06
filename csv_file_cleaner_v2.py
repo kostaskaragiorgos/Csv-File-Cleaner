@@ -27,6 +27,9 @@ class CsvFileCleaner():
                                    accelerator='Ctrl+F4', command=self.closefile)
         self.file_menu.add_command(label="Exit", accelerator='Alt+F4', command=self.exitmenu)
         self.menu.add_cascade(label="File", menu=self.file_menu)
+        self.show_menu = Menu(self.menu, tearoff=0)
+        self.show_menu.add_command(label="Show names of columns", command= self.showcol)
+        self.menu.add_cascade(label="Show", menu=self.show_menu)
         self.dup_menu = Menu(self.menu, tearoff=0)
         self.dup_menu.add_command(label="Delete all duplicates",
                                   accelerator='Ctrl+T',
@@ -74,6 +77,10 @@ class CsvFileCleaner():
         self.master.bind('<Alt-n>', lambda event: self.drop_missing(0))
         self.master.bind('<Control-F1>', lambda event: helpmenu())
         self.master.bind('<Control-i>', lambda event: aboutmenu())
+    
+    def showcol(self):
+        pass
+
     def checkifcsv(self, filenamesave):
         """ checks if the inserted file is a csv file """                                                           
         if filenamesave.endswith('.csv'):

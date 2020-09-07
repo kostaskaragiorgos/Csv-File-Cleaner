@@ -65,6 +65,23 @@ An informative message pops up
 
 You press ok to close the app or cancel if you don't want
 
+# SHOW MENU
+
+## Show names of columns
+
+You can show the names of the columns using Show --> Show names of columns or using Alt + t keybind
+
+<p><img src="doc images/show/show names of columns menu.png"/></p>
+
+if there is no imported file an error message pops up
+
+<p><img src="doc images/duplicates/no imported error.png"/></p>
+
+else a window with the names pops up
+
+<p><img src="doc images/show/column names.png"/></p>
+
+
 # DUPLICATES MENU
 
 ## Delete all duplicates

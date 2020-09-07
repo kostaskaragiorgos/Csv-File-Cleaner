@@ -79,8 +79,11 @@ class CsvFileCleaner():
         self.master.bind('<Control-i>', lambda event: aboutmenu())
     
     def showcol(self):
-        pass
-
+        if not ".csv" in self.filename:
+            msg.showerror("ERROR", "NO CSV TO SAVE")
+        else:
+            msg.showinfo("Column Names", str(self.df.columns))
+            
     def checkifcsv(self, filenamesave):
         """ checks if the inserted file is a csv file """                                                           
         if filenamesave.endswith('.csv'):

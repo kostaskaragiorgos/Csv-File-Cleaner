@@ -79,6 +79,7 @@ All project documentation is located in the `./doc`  folder.
   <li> Save file(Ctrl+S) </li>
   <li> Close file(Ctrl+F4) </li>
   <li> Exit(Alt+F4) </li>
+  <li> Show names of columns (Alt+T) </li>
   <li> Delete all duplicates(Ctrl+T) </li>
   <li> Delete all duplicates except first(Alt+F) </li>
   <li> Delete all duplicates except last(Alt+L) </li>

@@ -7,7 +7,7 @@ Exit Alt+F4
 =========================
 Show menu
 ==========================
-Show names of columns Ctrl+T
+Show names of columns Alt+T
 ==========================
 Duplicates menu
 ============================

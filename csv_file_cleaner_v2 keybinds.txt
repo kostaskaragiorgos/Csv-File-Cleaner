@@ -5,6 +5,10 @@ Save file Ctrl+S
 Close file Ctrl+F4
 Exit Alt+F4
 =========================
+Show menu
+==========================
+Show names of columns Ctrl+T
+==========================
 Duplicates menu
 ============================
 Delete all duplicates Ctrl+T

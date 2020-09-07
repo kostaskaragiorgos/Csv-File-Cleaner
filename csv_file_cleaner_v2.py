@@ -28,7 +28,7 @@ class CsvFileCleaner():
         self.file_menu.add_command(label="Exit", accelerator='Alt+F4', command=self.exitmenu)
         self.menu.add_cascade(label="File", menu=self.file_menu)
         self.show_menu = Menu(self.menu, tearoff=0)
-        self.show_menu.add_command(label="Show names of columns", command= self.showcol)
+        self.show_menu.add_command(label="Show names of columns", accelerator='Alt+T', command= self.showcol)
         self.menu.add_cascade(label="Show", menu=self.show_menu)
         self.dup_menu = Menu(self.menu, tearoff=0)
         self.dup_menu.add_command(label="Delete all duplicates",
@@ -67,6 +67,7 @@ class CsvFileCleaner():
         self.master.bind('<Control-s>', lambda event: self.save_file())
         self.master.bind('<Control-F4>', lambda event: self.closefile())
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
+        self.master.bind('<Alt-t>', lambda event:self.showcol())
         self.master.bind('<Control-t>', lambda event: self.delete_duplicates(False))
         self.master.bind('<Alt-f>', lambda event: self.delete_duplicates('first'))
         self.master.bind('<Alt-l>', lambda event: self.delete_duplicates('last'))

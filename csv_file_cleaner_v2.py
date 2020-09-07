@@ -28,7 +28,9 @@ class CsvFileCleaner():
         self.file_menu.add_command(label="Exit", accelerator='Alt+F4', command=self.exitmenu)
         self.menu.add_cascade(label="File", menu=self.file_menu)
         self.show_menu = Menu(self.menu, tearoff=0)
-        self.show_menu.add_command(label="Show names of columns", accelerator='Alt+T', command= self.showcol)
+        self.show_menu.add_command(label="Show names of columns",
+                                   accelerator='Alt+T',
+                                   command=self.showcol)
         self.menu.add_cascade(label="Show", menu=self.show_menu)
         self.dup_menu = Menu(self.menu, tearoff=0)
         self.dup_menu.add_command(label="Delete all duplicates",
@@ -54,7 +56,9 @@ class CsvFileCleaner():
         self.miss_v.add_command(label="Drop columns with missing values",
                                 accelerator='Alt+M',
                                 command=lambda: self.drop_missing(1))
-        self.miss_v.add_command(label="Drop rows with missing values", accelerator='Alt+N', command=lambda: self.drop_missing(0))
+        self.miss_v.add_command(label="Drop rows with missing values",
+                                accelerator='Alt+N',
+                                command=lambda: self.drop_missing(0))
         self.menu.add_cascade(label="Missing Values", menu=self.miss_v)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)
@@ -67,7 +71,7 @@ class CsvFileCleaner():
         self.master.bind('<Control-s>', lambda event: self.save_file())
         self.master.bind('<Control-F4>', lambda event: self.closefile())
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
-        self.master.bind('<Alt-t>', lambda event:self.showcol())
+        self.master.bind('<Alt-t>', lambda event: self.showcol())
         self.master.bind('<Control-t>', lambda event: self.delete_duplicates(False))
         self.master.bind('<Alt-f>', lambda event: self.delete_duplicates('first'))
         self.master.bind('<Alt-l>', lambda event: self.delete_duplicates('last'))
@@ -80,6 +84,7 @@ class CsvFileCleaner():
         self.master.bind('<Control-i>', lambda event: aboutmenu())
     
     def showcol(self):
+        """ shows the name of the columns"""
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV TO SAVE")
         else:
@@ -97,7 +102,7 @@ class CsvFileCleaner():
         if save:
             filenamesave = filedialog.asksaveasfilename(initialdir="/", title="Select file",
                                                         filetypes=(("csv files", "*.csv"),
-                                                                    ("all files", "*.*")))
+                                                                   ("all files", "*.*")))
             self.checkifcsv(filenamesave)
         else:
             msg.showerror("NO SAVE", "NO FILE SAVED")

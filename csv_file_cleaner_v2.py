@@ -82,16 +82,15 @@ class CsvFileCleaner():
         self.master.bind('<Alt-n>', lambda event: self.drop_missing(0))
         self.master.bind('<Control-F1>', lambda event: helpmenu())
         self.master.bind('<Control-i>', lambda event: aboutmenu())
-    
     def showcol(self):
         """ shows the name of the columns"""
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV TO SAVE")
         else:
             msg.showinfo("Column Names", str(self.df.columns))
-            
+
     def checkifcsv(self, filenamesave):
-        """ checks if the inserted file is a csv file """                                                           
+        """ checks if the inserted file is a csv file """
         if filenamesave.endswith('.csv'):
             msg.showinfo("SUCCESS", "THE CSV FILE SAVED SUCCESSFULLY")
             self.df.to_csv(filenamesave, index=False)
@@ -122,9 +121,11 @@ class CsvFileCleaner():
             msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
     def drop_specific_user_input(self):
         """ user enters the name of the column to drop"""
-        self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
+        self.asked_column = simpledialog.askstring("Column",
+                                                   "Insert the name of the column you want to drop")
         while self.asked_column is None or self.asked_column == "":
-            self.asked_column = simpledialog.askstring("Column", "Insert the name of the column you want to drop")
+            self.asked_column = simpledialog.askstring("Column",
+                                                       "Insert the name of the column you want to drop")
     def dropspecific(self, keep):
         """ drops all duplicates from a specific column """
         if not ".csv" in self.filename:
@@ -163,7 +164,8 @@ class CsvFileCleaner():
             msg.showerror("ERROR", "A CSV FILE IS ALREADY OPEN")
         else:
             self.filename = filedialog.askopenfilename(initialdir="/", title="Select csv file",
-                                                       filetypes=(("csv files", "*.csv"), ("all files", "*.*")))
+                                                       filetypes=(("csv files", "*.csv"),
+                                                                  ("all files", "*.*")))
             self.checkfile()
     def exitmenu(self):
         """ exit menu function """

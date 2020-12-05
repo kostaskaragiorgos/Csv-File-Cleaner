@@ -32,7 +32,7 @@ class CsvFileCleaner():
                                    accelerator='Alt+T',
                                    command=self.showcol)
         self.show_menu.add_command(label="Show shape of the dataset",
-                                    accelerator='Ctrl+F',
+                                   accelerator='Ctrl+F',
                                    command=self.showshape)
         self.menu.add_cascade(label="Show", menu=self.show_menu)
         self.dup_menu = Menu(self.menu, tearoff=0)
@@ -74,6 +74,7 @@ class CsvFileCleaner():
         self.master.bind('<Control-s>', lambda event: self.save_file())
         self.master.bind('<Control-F4>', lambda event: self.closefile())
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
+        self.master.bind('<Control-f>', lambda event: self.showshape())
         self.master.bind('<Alt-t>', lambda event: self.showcol())
         self.master.bind('<Control-t>', lambda event: self.delete_duplicates(False))
         self.master.bind('<Alt-f>', lambda event: self.delete_duplicates('first'))

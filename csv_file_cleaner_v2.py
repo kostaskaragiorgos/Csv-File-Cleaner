@@ -31,6 +31,8 @@ class CsvFileCleaner():
         self.show_menu.add_command(label="Show names of columns",
                                    accelerator='Alt+T',
                                    command=self.showcol)
+        self.show_menu.add_command(label="Show shape of the dataset",
+                                   command=self.showshape)
         self.menu.add_cascade(label="Show", menu=self.show_menu)
         self.dup_menu = Menu(self.menu, tearoff=0)
         self.dup_menu.add_command(label="Delete all duplicates",
@@ -82,6 +84,9 @@ class CsvFileCleaner():
         self.master.bind('<Alt-n>', lambda event: self.drop_missing(0))
         self.master.bind('<Control-F1>', lambda event: helpmenu())
         self.master.bind('<Control-i>', lambda event: aboutmenu())
+    
+    def showshape(self):
+        pass
     def showcol(self):
         """ shows the name of the columns"""
         if not ".csv" in self.filename:

@@ -86,7 +86,12 @@ class CsvFileCleaner():
         self.master.bind('<Control-i>', lambda event: aboutmenu())
     
     def showshape(self):
-        pass
+        """ shows the name of the columns"""
+        if not ".csv" in self.filename:
+            msg.showerror("ERROR", "NO CSV TO SAVE")
+        else:
+            msg.showinfo("Shape of the dataset", str(self.df.shape))
+        
     def showcol(self):
         """ shows the name of the columns"""
         if not ".csv" in self.filename:

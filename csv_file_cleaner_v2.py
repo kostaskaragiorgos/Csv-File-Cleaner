@@ -155,7 +155,7 @@ class CsvFileCleaner():
         """ checks if inserted file is a csv """
         if self.filename.endswith('.csv'):
             msg.showinfo("SUCCESSFUL INSERTION", "YOUR CSV FILE HAS SUCCESFULLY INSERTED")
-            if msg.askyesno("COPY FILE", "DO YOU WANT TO CREATE A COPY FILE TO CLEAN?"):
+            if msg.askyesno("COPY FILE", "DO YOU WANT TO CREATE A COPY FILE TO CLEAN?\n\n Yes: Creates and uses a copy of the inserted file\n No: Uses the inserted file"):
                 self.df = pd.read_csv(self.filename)
                 fstr = self.filename.split("/")[-1]
                 self.df.to_csv('copy'+fstr)

@@ -32,6 +32,7 @@ class CsvFileCleaner():
                                    accelerator='Alt+T',
                                    command=self.showcol)
         self.show_menu.add_command(label="Show shape of the dataset",
+                                    accelerator='Ctrl+F',
                                    command=self.showshape)
         self.menu.add_cascade(label="Show", menu=self.show_menu)
         self.dup_menu = Menu(self.menu, tearoff=0)

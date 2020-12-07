@@ -28,7 +28,7 @@ class CsvFileCleaner():
         self.file_menu.add_command(label="Exit", accelerator='Alt+F4', command=self.exitmenu)
         self.menu.add_cascade(label="File", menu=self.file_menu)
         self.remove_menu = Menu(self.menu, tearoff=0)
-        self.remove_menu.add_command(label="Remove column")
+        self.remove_menu.add_command(label="Remove column", command=self.removecol)
         self.menu.add_cascade(label="Remove", menu=self.remove_menu)
         self.show_menu = Menu(self.menu, tearoff=0)
         self.show_menu.add_command(label="Show names of columns",

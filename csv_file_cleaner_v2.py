@@ -94,11 +94,11 @@ class CsvFileCleaner():
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
-            self.asked_column = simpledialog.askstring("Column",
-                                                   "Insert the name of the column you want to drop")
+            self.asked_column = simpledialog.askstring("Column","Columns"+str(self.df.columns.values.tolist())+
+                                                   "\nInsert the name of the column you want to drop")
             while self.asked_column is None or self.asked_column == "":
-                self.asked_column = simpledialog.askstring("Column",
-                                                       "Insert the name of the column you want to drop")
+                self.asked_column = simpledialog.askstring("Column","Columns"+str(self.df.columns.values.tolist())+
+                                                       "\nInsert the name of the column you want to drop")
             if self.asked_column in self.df.columns:
                 self.df.drop(self.asked_column, axis=1, inplace=True)
                 msg.showinfo("SUCCESS", "COLUMN HAS SUCCESSFULLY REMOVED")

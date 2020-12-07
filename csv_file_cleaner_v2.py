@@ -90,6 +90,11 @@ class CsvFileCleaner():
         self.master.bind('<Control-F1>', lambda event: helpmenu())
         self.master.bind('<Control-i>', lambda event: aboutmenu())
     
+    def removecol(self):
+        if not ".csv" in self.filename:
+            msg.showerror("ERROR", "NO CSV IMPORTED")
+        else:
+            pass
     def showshape(self):
         """ shows the name of the columns"""
         if not ".csv" in self.filename:

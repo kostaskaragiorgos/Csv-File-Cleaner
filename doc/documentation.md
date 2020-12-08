@@ -65,6 +65,13 @@ An informative message pops up
 
 You press ok to close the app or cancel if you don't want
 
+# REMOVE MENU
+
+## Remove column
+
+You can remove a column by using menu Remove --> Remove column or using Alt + B
+
+
 # SHOW MENU
 
 ## Show names of columns

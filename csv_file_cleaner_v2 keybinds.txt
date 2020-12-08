@@ -5,10 +5,15 @@ Save file Ctrl+S
 Close file Ctrl+F4
 Exit Alt+F4
 =========================
+Remove menu
+=====================
+Remove column Alt + B
+=====================
 Show menu
-==========================
+======================================
+Show the shape of the dataset Ctrl + F
 Show names of columns Alt+T
-==========================
+======================================
 Duplicates menu
 ============================
 Delete all duplicates Ctrl+T

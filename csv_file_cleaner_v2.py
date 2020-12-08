@@ -105,14 +105,14 @@ class CsvFileCleaner():
     def showshape(self):
         """ shows the name of the columns"""
         if not ".csv" in self.filename:
-            msg.showerror("ERROR", "NO CSV TO SAVE")
+            msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
             msg.showinfo("Shape of the dataset", str(self.df.shape))
         
     def showcol(self):
         """ shows the name of the columns"""
         if not ".csv" in self.filename:
-            msg.showerror("ERROR", "NO CSV TO SAVE")
+            msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
             msg.showinfo("Column Names", str(self.df.columns))
 

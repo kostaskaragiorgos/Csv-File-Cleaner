@@ -28,7 +28,7 @@ class CsvFileCleaner():
         self.file_menu.add_command(label="Exit", accelerator='Alt+F4', command=self.exitmenu)
         self.menu.add_cascade(label="File", menu=self.file_menu)
         self.remove_menu = Menu(self.menu, tearoff=0)
-        self.remove_menu.add_command(label="Remove column", command=self.removecol)
+        self.remove_menu.add_command(label="Remove column", accelerator='Alt+B', command=self.removecol)
         self.menu.add_cascade(label="Remove", menu=self.remove_menu)
         self.show_menu = Menu(self.menu, tearoff=0)
         self.show_menu.add_command(label="Show names of columns",
@@ -79,6 +79,7 @@ class CsvFileCleaner():
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
         self.master.bind('<Control-f>', lambda event: self.showshape())
         self.master.bind('<Alt-t>', lambda event: self.showcol())
+        self.master.bind('<Alt-b>', lambda event: self.removecol())
         self.master.bind('<Control-t>', lambda event: self.delete_duplicates(False))
         self.master.bind('<Alt-f>', lambda event: self.delete_duplicates('first'))
         self.master.bind('<Alt-l>', lambda event: self.delete_duplicates('last'))
@@ -91,6 +92,7 @@ class CsvFileCleaner():
         self.master.bind('<Control-i>', lambda event: aboutmenu())
     
     def removecol(self):
+        """ removes a column from the file"""
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:

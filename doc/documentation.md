@@ -82,6 +82,10 @@ else a window with the names pops up
 <p><img src="doc images/show/column names.png"/></p>
 
 
+## Show the shape of the dataset
+
+You can show the shape of the dataset by using Show --> Show the shape of the dataset or using Ctrl+t keybind
+
 # DUPLICATES MENU
 
 ## Delete all duplicates

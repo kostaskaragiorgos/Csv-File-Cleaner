@@ -78,6 +78,10 @@ if there is no imported file an error message pops up
 
 <p><img src="doc images/duplicates/no imported error.png"/></p>
 
+else an input window pops up
+
+<p><img src="doc images/remove/inputwindow.png"/></p>
+
 
 
 # SHOW MENU

@@ -82,7 +82,13 @@ else an input window pops up
 
 <p><img src="doc images/remove/inputwindow.png"/></p>
 
+if you insert the name of the column an informative window pops up
 
+<p><img src="doc images/remove/success.png"/></p>
+
+else an error window pops up
+
+<p><img src="doc images/remove/error.png"/></p>
 
 # SHOW MENU
 

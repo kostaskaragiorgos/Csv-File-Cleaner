@@ -71,6 +71,14 @@ You press ok to close the app or cancel if you don't want
 
 You can remove a column by using menu Remove --> Remove column or using Alt + B
 
+<p><img src="doc images/remove/remove column.png"/> </p>
+
+
+if there is no imported file an error message pops up
+
+<p><img src="doc images/duplicates/no imported error.png"/></p>
+
+
 
 # SHOW MENU
 

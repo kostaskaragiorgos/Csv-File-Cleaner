@@ -119,7 +119,7 @@ if there is no imported file an error message pops up
 
 else an informative window pops up
 
-
+<p><img src="doc images/show/shape of dataset.png"/></p>
 
 # DUPLICATES MENU
 

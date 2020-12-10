@@ -117,6 +117,8 @@ if there is no imported file an error message pops up
 
 <p><img src="doc images/duplicates/no imported error.png"/></p>
 
+else an informative window pops up
+
 
 
 # DUPLICATES MENU

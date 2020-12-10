@@ -111,6 +111,10 @@ else a window with the names pops up
 
 You can show the shape of the dataset by using Show --> Show the shape of the dataset or using Ctrl+t keybind
 
+<p><img src="doc images/show/show shape of dataset menu.png"/></p>
+
+
+
 # DUPLICATES MENU
 
 ## Delete all duplicates

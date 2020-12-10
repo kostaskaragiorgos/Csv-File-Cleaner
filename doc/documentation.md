@@ -113,6 +113,10 @@ You can show the shape of the dataset by using Show --> Show the shape of the da
 
 <p><img src="doc images/show/show shape of dataset menu.png"/></p>
 
+if there is no imported file an error message pops up
+
+<p><img src="doc images/duplicates/no imported error.png"/></p>
+
 
 
 # DUPLICATES MENU

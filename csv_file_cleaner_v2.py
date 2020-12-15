@@ -34,6 +34,8 @@ class CsvFileCleaner():
         self.show_menu.add_command(label="Show names of columns",
                                    accelerator='Alt+T',
                                    command=self.showcol)
+        self.show_menu.add_command(label="Show type of columns",
+                                   command=self.showtypeofcolumns)
         self.show_menu.add_command(label="Show shape of the dataset",
                                    accelerator='Ctrl+F',
                                    command=self.showshape)

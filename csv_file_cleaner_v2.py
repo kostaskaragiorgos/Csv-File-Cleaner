@@ -108,6 +108,14 @@ class CsvFileCleaner():
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
             msg.showinfo("Shape of the dataset", str(self.df.shape))
+    
+    def showtypeofcolumns(self):
+        """ shows the types of the columns"""
+        if not ".csv" in self.filename:
+            msg.showerror("ERROR", "NO CSV IMPORTED")
+        else:
+            msg.showinfo("Column Types", str(list(self.df.dtypes)))
+
         
     def showcol(self):
         """ shows the name of the columns"""

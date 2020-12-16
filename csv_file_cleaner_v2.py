@@ -35,6 +35,7 @@ class CsvFileCleaner():
                                    accelerator='Alt+T',
                                    command=self.showcol)
         self.show_menu.add_command(label="Show type of columns",
+                                   accelerator='Ctrl+V',
                                    command=self.showtypeofcolumns)
         self.show_menu.add_command(label="Show shape of the dataset",
                                    accelerator='Ctrl+F',
@@ -75,6 +76,7 @@ class CsvFileCleaner():
         self.help_menu.add_command(label="Help", accelerator='Ctrl+F1', command=helpmenu)
         self.menu.add_cascade(label="Help", menu=self.help_menu)
         self.master.config(menu=self.menu)
+        self.master.bind('<Control-v>', lambda event: self.showtypeofcolumns())
         self.master.bind('<Control-o>', lambda event: self.insertfile())
         self.master.bind('<Control-s>', lambda event: self.save_file())
         self.master.bind('<Control-F4>', lambda event: self.closefile())

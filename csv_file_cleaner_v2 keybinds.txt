@@ -12,6 +12,7 @@ Remove column Alt + B
 Show menu
 ======================================
 Show the shape of the dataset Ctrl + F
+Show type of columns Ctrl + V
 Show names of columns Alt+T
 ======================================
 Duplicates menu

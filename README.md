@@ -81,6 +81,7 @@ All project documentation is located in the `./doc`  folder.
   <li> Exit(Alt+F4) </li>
   <li> Remove column (Alt + B) </li>
   <li> Show the shape of the dataset (Ctrl + F) </li>
+  <li> Show type of columns (Ctrl+V) </li>
   <li> Show names of columns (Alt+T) </li>
   <li> Delete all duplicates(Ctrl+T) </li>
   <li> Delete all duplicates except first(Alt+F) </li>

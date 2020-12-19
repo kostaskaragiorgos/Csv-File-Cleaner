@@ -161,11 +161,16 @@ class CsvFileCleaner():
             msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
     def drop_specific_user_input(self):
         """ user enters the name of the column to drop"""
-        self.asked_column = simpledialog.askstring("Column","Columns"+str(self.df.columns.values.tolist())+
-                                                   "\nInsert the name of the column you want to drop")
+        self.asked_column = simpledialog.askstring("Column",
+                                                   "Columns"+str(self.df.columns.values.tolist())+
+                                                   "\nInsert the name of the column"+
+                                                   "you want to drop")
         while self.asked_column is None or self.asked_column == "":
-            self.asked_column = simpledialog.askstring("Column","Columns"+str(self.df.columns.values.tolist())+
-                                                       "\nInsert the name of the column you want to drop")
+            self.asked_column = simpledialog.askstring("Column",
+                                                       "Columns"
+                                                       +str(self.df.columns.values.tolist())+
+                                                       "\nInsert the name of the column"+
+                                                       "you want to drop")
     def dropspecific(self, keep):
         """ drops all duplicates from a specific column """
         if not ".csv" in self.filename:
@@ -195,7 +200,9 @@ class CsvFileCleaner():
         """ checks if inserted file is a csv """
         if self.filename.endswith('.csv'):
             msg.showinfo("SUCCESSFUL INSERTION", "YOUR CSV FILE HAS SUCCESFULLY INSERTED")
-            if msg.askyesno("COPY FILE", "DO YOU WANT TO CREATE A COPY FILE TO CLEAN?\n\n Yes: Creates and uses a copy of the inserted file\n No: Uses the inserted file"):
+            if msg.askyesno("COPY FILE", "DO YOU WANT TO CREATE A COPY FILE TO CLEAN?\n"+
+                            "\n Yes: Creates and uses a copy of the inserted file\n"+
+                            "No: Uses the inserted file"):
                 self.df = pd.read_csv(self.filename)
                 fstr = self.filename.split("/")[-1]
                 self.df.to_csv('copy'+fstr)

@@ -107,6 +107,15 @@ class CsvFileCleaner():
                 msg.showinfo("SUCCESS", "COLUMN HAS SUCCESSFULLY REMOVED")
             else:
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
+
+    def removerow(self):
+        """ removes a row from the file"""
+        if not ".csv" in self.filename:
+            msg.showerror("ERROR", "NO CSV IMPORTED")
+        else:
+            pass
+
+
     def showshape(self):
         """ shows the name of the columns"""
         if not ".csv" in self.filename:

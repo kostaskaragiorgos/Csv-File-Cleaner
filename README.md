@@ -79,6 +79,7 @@ All project documentation is located in the `./doc`  folder.
   <li> Save file(Ctrl+S) </li>
   <li> Close file(Ctrl+F4) </li>
   <li> Exit(Alt+F4) </li>
+  <li> Remove row (Alt + R) </li>
   <li> Remove column (Alt + B) </li>
   <li> Show the shape of the dataset (Ctrl + F) </li>
   <li> Show type of columns (Ctrl+V) </li>

@@ -114,7 +114,8 @@ class CsvFileCleaner():
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
-            pass
+            self.drop_row_user_input()
+            msg.showinfo("SUCCESS", "ROW HAS SUCCESSFULLY BEEN REMOVED")
 
 
     def showshape(self):
@@ -169,6 +170,19 @@ class CsvFileCleaner():
         else:
             self.df.drop_duplicates(keep=keep, inplace=True)
             msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
+    
+    def drop_row_user_input(self):
+        """ user enters the number of the row to drop"""
+        self.asked_row = simpledialog.askinteger("Row",
+                                                   "Rows"
+                                                   "\nInsert the number of the row"+
+                                                   "you want to drop")
+        while self.asked_row is None or self.asked_row == "":
+            self.asked_row = simpledialog.askinteger("Row",
+                                            "Rows"
+                                            "\nInsert the number of the row"+
+                                            "you want to drop")
+
     def drop_specific_user_input(self):
         """ user enters the name of the column to drop"""
         self.asked_column = simpledialog.askstring("Column",

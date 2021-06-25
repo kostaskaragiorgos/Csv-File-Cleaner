@@ -90,6 +90,12 @@ else an error window pops up
 
 <p><img src="doc images/remove/error.png"/></p>
 
+## Remove row
+
+You can remove row by using Remove --> Remove Row or by using Alt+R keybind
+
+<p><img src="doc images/remove/remove row.png"/></p>
+
 # SHOW MENU
 
 ## Show names of columns

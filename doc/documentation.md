@@ -96,6 +96,16 @@ You can remove row by using Remove --> Remove Row or by using Alt+R keybind
 
 <p><img src="doc images/remove/remove row.png"/></p>
 
+if there is no imported file an error message pops up
+
+<p><img src="doc images/duplicates/no imported error.png"/></p>
+
+else an input window pops up
+
+<p><img src="doc images/remove/inputrowwindow.png"/></p>
+
+<p><img src="doc images/remove/success row has been successfully removed.png"/></p>
+
 # SHOW MENU
 
 ## Show names of columns

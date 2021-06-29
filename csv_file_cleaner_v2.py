@@ -102,7 +102,7 @@ class CsvFileCleaner():
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
-            self.drop_specific_user_input()
+            self.drop_user_input()
             if self.asked_column in self.df.columns:
                 self.df.drop(self.asked_column, axis=1, inplace=True)
                 msg.showinfo("SUCCESS", "COLUMN HAS SUCCESSFULLY REMOVED")
@@ -114,7 +114,7 @@ class CsvFileCleaner():
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
-            row_r = self.drop_row_user_input()
+            row_r = self.drop_user_input("Row", "Rows", "Enter the number of row to delete", 0, maxvalue=self.df.shape[0])
             self.df.drop(self.df.index[row_r], inplace=True)
             msg.showinfo("SUCCESS", "ROW HAS SUCCESSFULLY BEEN REMOVED")
 
@@ -172,51 +172,26 @@ class CsvFileCleaner():
             self.df.drop_duplicates(keep=keep, inplace=True)
             msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
     
-    def drop_user_input(self, type, title, prompt, minvalue, maxvalue):
+    def drop_user_input(self, type=None, title=None, prompt=None, minvalue=None, maxvalue=None):
         if type == "Row":
-            asked = simpledialog.askinteger(title, prompt, minvalue, maxvalue)
+            asked = simpledialog.askinteger(title= title, prompt= prompt,minvalue= minvalue, maxvalue =  maxvalue)
             while asked is None or asked == "":
-                asked = simpledialog.askinteger(title, prompt, minvalue, maxvalue)
+                asked = simpledialog.askinteger(title= title, prompt= prompt,minvalue= minvalue, maxvalue =  maxvalue)
+        else:
+            asked = simpledialog.askstring(title, prompt)
+            while asked is None or asked == "":
+                asked = simpledialog.askstring(title, prompt)
+
         return asked
     
-    def drop_row_user_input(self):
-        """ user enters the number of the row to drop
-        Returns:
-            asked_r: the row number to delete
-        """
-        asked_r = simpledialog.askinteger("Row",
-                                                   "Rows"
-                                                   "\nInsert the number of the row"+
-                                                   " you want to drop",
-                                                   minvalue=2,
-                                                   maxvalue=self.df.shape[0])
-        while asked_r is None or asked_r == "":
-            asked_r = simpledialog.askinteger("Row",
-                                            "Rows"
-                                            "\nInsert the number of the row"+
-                                            " you want to drop",
-                                            minvalue=2,
-                                            maxvalue=self.df.shape[0])
-        return asked_r
-
-    def drop_specific_user_input(self):
-        """ user enters the name of the column to drop"""
-        self.asked_column = simpledialog.askstring("Column",
-                                                   "Columns"+str(self.df.columns.values.tolist())+
-                                                   "\nInsert the name of the column"+
-                                                   "you want to drop")
-        while self.asked_column is None or self.asked_column == "":
-            self.asked_column = simpledialog.askstring("Column",
-                                                       "Columns"
-                                                       +str(self.df.columns.values.tolist())+
-                                                       "\nInsert the name of the column"+
-                                                       "you want to drop")
     def dropspecific(self, keep):
         """ drops all duplicates from a specific column """
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
-            self.drop_specific_user_input()          
+            self.drop_user_input(title="Column", prompt= "Columns"+str(self.df.columns.values.tolist())+
+                                                   "\nInsert the name of the column"+
+                                                   "you want to drop")          
             if self.asked_column in self.df.columns:
                 self.df.drop_duplicates(subset=self.asked_column, keep=keep, inplace=True)
                 msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")

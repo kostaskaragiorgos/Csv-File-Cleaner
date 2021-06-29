@@ -172,6 +172,13 @@ class CsvFileCleaner():
             self.df.drop_duplicates(keep=keep, inplace=True)
             msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
     
+    def drop_user_input(self, type, title, prompt, minvalue, maxvalue):
+        if type == "Row":
+            asked = simpledialog.askinteger(title, prompt, minvalue, maxvalue)
+            while asked is None or asked == "":
+                asked = simpledialog.askinteger(title, prompt, minvalue, maxvalue)
+        return asked
+    
     def drop_row_user_input(self):
         """ user enters the number of the row to drop
         Returns:

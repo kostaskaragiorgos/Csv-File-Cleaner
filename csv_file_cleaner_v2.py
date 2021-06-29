@@ -102,7 +102,7 @@ class CsvFileCleaner():
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
-            asked = self.drop_user_input(title="Column",
+            asked = self.drop_user_input(title="Column", dt=None ,dialogtype=simpledialog.askstring,
                                          prompt="Columns"+str(self.df.columns.values.tolist())+
                                                 "\nInsert the name of the column"+
                                                 "you want to drop")
@@ -117,7 +117,7 @@ class CsvFileCleaner():
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
-            row_r = self.drop_user_input("Row", "Rows", "Enter the number of row to delete", 0, maxvalue=self.df.shape[0])
+            row_r = self.drop_user_input(type="Row", title="Rows", dt="Integer", dialogtype=simpledialog.askinteger, prompt="Enter the number of row to delete", minvalue = 0, maxvalue=self.df.shape[0])
             self.df.drop(self.df.index[row_r], inplace=True)
             msg.showinfo("SUCCESS", "ROW HAS SUCCESSFULLY BEEN REMOVED")
 
@@ -175,15 +175,16 @@ class CsvFileCleaner():
             self.df.drop_duplicates(keep=keep, inplace=True)
             msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
     
-    def drop_user_input(self, type=None, title=None, prompt=None, minvalue=None, maxvalue=None):
+    def drop_user_input(self, dt = None, dialogtype= None,type=None, title=None, prompt=None, minvalue=None, maxvalue=None):
         if type == "Row":
-            asked = simpledialog.askinteger(title= title, prompt= prompt,minvalue= minvalue, maxvalue =  maxvalue)
-            while asked is None or asked == "":
-                asked = simpledialog.askinteger(title= title, prompt= prompt,minvalue= minvalue, maxvalue =  maxvalue)
+            asked = dialogtype(title= title, prompt= prompt,minvalue= minvalue, maxvalue =  maxvalue)
         else:
-            asked = simpledialog.askstring(title = title, prompt = prompt)
-            while asked is None or asked == "":
-                asked = simpledialog.askstring(title = title, prompt = prompt)
+            asked = dialogtype(title = title, prompt = prompt)
+        while asked is None or asked == "":
+            if dt == "Integer":
+                asked = dialogtype(title= title, prompt= prompt, minvalue= minvalue, maxvalue =  maxvalue)
+            else:
+                asked = dialogtype(title = title, prompt = prompt)
         return asked
     
     def dropspecific(self, keep):

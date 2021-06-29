@@ -102,9 +102,12 @@ class CsvFileCleaner():
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
-            self.drop_user_input()
-            if self.asked_column in self.df.columns:
-                self.df.drop(self.asked_column, axis=1, inplace=True)
+            asked = self.drop_user_input(title="Column",
+                                         prompt="Columns"+str(self.df.columns.values.tolist())+
+                                                "\nInsert the name of the column"+
+                                                "you want to drop")
+            if asked in self.df.columns:
+                self.df.drop(asked, axis=1, inplace=True)
                 msg.showinfo("SUCCESS", "COLUMN HAS SUCCESSFULLY REMOVED")
             else:
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
@@ -178,10 +181,9 @@ class CsvFileCleaner():
             while asked is None or asked == "":
                 asked = simpledialog.askinteger(title= title, prompt= prompt,minvalue= minvalue, maxvalue =  maxvalue)
         else:
-            asked = simpledialog.askstring(title, prompt)
+            asked = simpledialog.askstring(title = title, prompt = prompt)
             while asked is None or asked == "":
-                asked = simpledialog.askstring(title, prompt)
-
+                asked = simpledialog.askstring(title = title, prompt = prompt)
         return asked
     
     def dropspecific(self, keep):

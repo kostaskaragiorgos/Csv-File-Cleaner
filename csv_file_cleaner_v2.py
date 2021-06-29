@@ -180,14 +180,14 @@ class CsvFileCleaner():
         asked_r = simpledialog.askinteger("Row",
                                                    "Rows"
                                                    "\nInsert the number of the row"+
-                                                   "you want to drop",
+                                                   " you want to drop",
                                                    minvalue=2,
                                                    maxvalue=self.df.shape[0])
         while asked_r is None or asked_r == "":
-            self.asked_r = simpledialog.askinteger("Row",
+            asked_r = simpledialog.askinteger("Row",
                                             "Rows"
                                             "\nInsert the number of the row"+
-                                            "you want to drop",
+                                            " you want to drop",
                                             minvalue=2,
                                             maxvalue=self.df.shape[0])
         return asked_r

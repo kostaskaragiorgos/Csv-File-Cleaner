@@ -114,7 +114,8 @@ class CsvFileCleaner():
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
-            self.drop_row_user_input()
+            row_r = self.drop_row_user_input()
+            self.df.drop(self.df.index[row_r], inplace=True)
             msg.showinfo("SUCCESS", "ROW HAS SUCCESSFULLY BEEN REMOVED")
 
 
@@ -173,15 +174,20 @@ class CsvFileCleaner():
     
     def drop_row_user_input(self):
         """ user enters the number of the row to drop"""
-        self.asked_row = simpledialog.askinteger("Row",
+        asked_r = simpledialog.askinteger("Row",
                                                    "Rows"
                                                    "\nInsert the number of the row"+
-                                                   "you want to drop")
-        while self.asked_row is None or self.asked_row == "":
-            self.asked_row = simpledialog.askinteger("Row",
+                                                   "you want to drop",
+                                                   minvalue=2,
+                                                   maxvalue=self.df.shape[0])
+        while asked_r is None or asked_r == "":
+            self.asked_r = simpledialog.askinteger("Row",
                                             "Rows"
                                             "\nInsert the number of the row"+
-                                            "you want to drop")
+                                            "you want to drop",
+                                            minvalue=2,
+                                            maxvalue=self.df.shape[0])
+        return asked_r
 
     def drop_specific_user_input(self):
         """ user enters the name of the column to drop"""

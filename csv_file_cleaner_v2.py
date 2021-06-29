@@ -173,7 +173,10 @@ class CsvFileCleaner():
             msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
     
     def drop_row_user_input(self):
-        """ user enters the number of the row to drop"""
+        """ user enters the number of the row to drop
+        Returns:
+            asked_r: the row number to delete
+        """
         asked_r = simpledialog.askinteger("Row",
                                                    "Rows"
                                                    "\nInsert the number of the row"+

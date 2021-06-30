@@ -18,6 +18,7 @@ class CsvFileCleaner():
         self.master.geometry("250x120")
         self.master.resizable(False, False)
         self.filename = ""
+        self.df = pd.DataFrame()
         self.menu = Menu(self.master)
         self.file_menu = Menu(self.menu, tearoff=0)
         self.file_menu.add_command(label="Insert a csv file",
@@ -40,7 +41,7 @@ class CsvFileCleaner():
                                    command=self.showtypeofcolumns)
         self.show_menu.add_command(label="Show shape of the dataset",
                                    accelerator='Ctrl+F',
-                                   command=self.showshape)
+                                   command=lambda: self.showinformation(self.df.shape, "Shape of the dataset"))
         self.menu.add_cascade(label="Show", menu=self.show_menu)
         self.dup_menu = Menu(self.menu, tearoff=0)
         self.dup_menu.add_command(label="Delete all duplicates",
@@ -82,7 +83,7 @@ class CsvFileCleaner():
         self.master.bind('<Control-s>', lambda event: self.save_file())
         self.master.bind('<Control-F4>', lambda event: self.closefile())
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
-        self.master.bind('<Control-f>', lambda event: self.showshape())
+        self.master.bind('<Control-f>', lambda event: self.showinformation(self.df.shape, "Shape of the dataset"))
         self.master.bind('<Alt-t>', lambda event: self.showcol())
         self.master.bind('<Alt-b>', lambda event: self.removecol())
         self.master.bind('<Alt-r>', lambda event:self.removerow())
@@ -121,6 +122,13 @@ class CsvFileCleaner():
             self.df.drop(self.df.index[row_r], inplace=True)
             msg.showinfo("SUCCESS", "ROW HAS SUCCESSFULLY BEEN REMOVED")
 
+    
+
+    def showinformation(self, typeofinfo=None, messagetitle=None):
+        if  not ".csv" in self.filename:
+            msg.showerror("ERROR", "NO CSV IMPORTED")
+        else:
+            msg.showinfo(title=str(messagetitle), message=str(typeofinfo))
 
     def showshape(self):
         """ shows the name of the columns"""

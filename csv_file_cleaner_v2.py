@@ -35,10 +35,10 @@ class CsvFileCleaner():
         self.show_menu = Menu(self.menu, tearoff=0)
         self.show_menu.add_command(label="Show names of columns",
                                    accelerator='Alt+T',
-                                   command=self.showcol)
+                                   command=self.showinformation(str(self.df.columns), "Column Names"))
         self.show_menu.add_command(label="Show type of columns",
                                    accelerator='Ctrl+V',
-                                   command=self.showtypeofcolumns)
+                                   command= lambda: self.showinformation(str(list(self.df.dtypes)),"Column Types" ))
         self.show_menu.add_command(label="Show shape of the dataset",
                                    accelerator='Ctrl+F',
                                    command=lambda: self.showinformation(self.df.shape, "Shape of the dataset"))
@@ -78,13 +78,13 @@ class CsvFileCleaner():
         self.help_menu.add_command(label="Help", accelerator='Ctrl+F1', command=helpmenu)
         self.menu.add_cascade(label="Help", menu=self.help_menu)
         self.master.config(menu=self.menu)
-        self.master.bind('<Control-v>', lambda event: self.showtypeofcolumns())
+        self.master.bind('<Control-v>', lambda event: self.showinformation(str(list(self.df.dtypes)),"Column Types" ))
         self.master.bind('<Control-o>', lambda event: self.insertfile())
         self.master.bind('<Control-s>', lambda event: self.save_file())
         self.master.bind('<Control-F4>', lambda event: self.closefile())
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
         self.master.bind('<Control-f>', lambda event: self.showinformation(self.df.shape, "Shape of the dataset"))
-        self.master.bind('<Alt-t>', lambda event: self.showcol())
+        self.master.bind('<Alt-t>', lambda event: self.showinformation(str(self.df.columns), "Column Names"))
         self.master.bind('<Alt-b>', lambda event: self.removecol())
         self.master.bind('<Alt-r>', lambda event:self.removerow())
         self.master.bind('<Control-t>', lambda event: self.delete_duplicates(False))
@@ -130,21 +130,7 @@ class CsvFileCleaner():
         else:
             msg.showinfo(title=str(messagetitle), message=str(typeofinfo))
 
-    def showshape(self):
-        """ shows the name of the columns"""
-        if not ".csv" in self.filename:
-            msg.showerror("ERROR", "NO CSV IMPORTED")
-        else:
-            msg.showinfo("Shape of the dataset", str(self.df.shape))
     
-    def showtypeofcolumns(self):
-        """ shows the types of the columns"""
-        if not ".csv" in self.filename:
-            msg.showerror("ERROR", "NO CSV IMPORTED")
-        else:
-            msg.showinfo("Column Types", str(list(self.df.dtypes)))
-
-        
     def showcol(self):
         """ shows the name of the columns"""
         if not ".csv" in self.filename:

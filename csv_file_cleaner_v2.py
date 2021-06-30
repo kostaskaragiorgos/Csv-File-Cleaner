@@ -35,7 +35,7 @@ class CsvFileCleaner():
         self.show_menu = Menu(self.menu, tearoff=0)
         self.show_menu.add_command(label="Show names of columns",
                                    accelerator='Alt+T',
-                                   command=self.showinformation(str(self.df.columns), "Column Names"))
+                                   command= lambda: self.showinformation(str(self.df.columns), "Column Names"))
         self.show_menu.add_command(label="Show type of columns",
                                    accelerator='Ctrl+V',
                                    command= lambda: self.showinformation(str(list(self.df.dtypes)),"Column Types" ))
@@ -130,13 +130,6 @@ class CsvFileCleaner():
         else:
             msg.showinfo(title=str(messagetitle), message=str(typeofinfo))
 
-    
-    def showcol(self):
-        """ shows the name of the columns"""
-        if not ".csv" in self.filename:
-            msg.showerror("ERROR", "NO CSV IMPORTED")
-        else:
-            msg.showinfo("Column Names", str(self.df.columns))
 
     def checkifcsv(self, filenamesave):
         """ checks if the inserted file is a csv file """

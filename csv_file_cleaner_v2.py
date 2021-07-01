@@ -169,6 +169,19 @@ class CsvFileCleaner():
             msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
     
     def drop_user_input(self, dt = None, dialogtype= None,type=None, title=None, prompt=None, minvalue=None, maxvalue=None):
+        """
+        Saves the user input
+        Args:
+        dt: the type of the  dialog(input)
+        dialogtype: the dialogtypr
+        type: row or column to delete
+        title: the title of the window
+        prompt: the message of the window
+        minvalue: the lowest possible input value
+        maxvalue: the biggest possible input value
+        Returns:
+            asked: the user input
+        """
         if type == "Row":
             asked = dialogtype(title= title, prompt= prompt,minvalue= minvalue, maxvalue =  maxvalue)
         else:

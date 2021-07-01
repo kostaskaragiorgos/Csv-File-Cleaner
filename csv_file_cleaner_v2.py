@@ -125,6 +125,12 @@ class CsvFileCleaner():
     
 
     def showinformation(self, typeofinfo=None, messagetitle=None):
+        """
+        pops up an informative window based on input
+        Args:
+            typeofinfo: the desired info
+            messagetitle: the window title
+        """
         if  not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:

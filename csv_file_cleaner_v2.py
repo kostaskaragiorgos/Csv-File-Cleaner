@@ -221,8 +221,10 @@ class CsvFileCleaner():
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
+            original = len(self.df)
             self.df.dropna(axis=axis, inplace=True)
-            msg.showinfo("MISSING VALUES", "MISSING VALUES HAS SUCCESSFULLY REMOVED")
+            self.effectedlines += abs(original-self.effectedlines)
+            msg.showinfo("MISSING VALUES", "MISSING VALUES HAS SUCCESSFULLY REMOVED\nTHERE ARE " +str(self.effectedlines)+ " EFFECTED LINES")
     def closefile(self):
         """ closes the csv file """
         if not ".csv" in self.filename:

@@ -17,6 +17,7 @@ class CsvFileCleaner():
         self.master.title("Csv-File-Cleaner")
         self.master.geometry("250x120")
         self.master.resizable(False, False)
+        self.effectedlines = 0
         self.filename = ""
         self.df = pd.DataFrame()
         self.menu = Menu(self.master)
@@ -165,8 +166,10 @@ class CsvFileCleaner():
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
+            original = len(self.df)
             self.df.drop_duplicates(keep=keep, inplace=True)
-            msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
+            self.effectedlines = abs(original - len(self.df))
+            msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED \nTHERE ARE " + str(self.effectedlines) + " EFFECTED LINES")
     
     def drop_user_input(self, dt = None, dialogtype= None,type=None, title=None, prompt=None, minvalue=None, maxvalue=None):
         """

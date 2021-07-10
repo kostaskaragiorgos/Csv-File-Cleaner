@@ -43,7 +43,7 @@ class CsvFileCleaner():
         self.show_menu.add_command(label="Show shape of the dataset",
                                    accelerator='Ctrl+F',
                                    command=lambda: self.showinformation(self.df.shape, "Shape of the dataset"))
-        self.show_menu.add_command(label="Show effected lines", command=lambda: self.showinformation(self.effectedlines, "Number of Effected Lines"))
+        self.show_menu.add_command(label="Show effected lines", accelerator='Ctrl+J', command=lambda: self.showinformation(self.effectedlines, "Number of Effected Lines"))
         self.menu.add_cascade(label="Show", menu=self.show_menu)
         self.dup_menu = Menu(self.menu, tearoff=0)
         self.dup_menu.add_command(label="Delete all duplicates",
@@ -87,6 +87,7 @@ class CsvFileCleaner():
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
         self.master.bind('<Control-f>', lambda event: self.showinformation(self.df.shape, "Shape of the dataset"))
         self.master.bind('<Alt-t>', lambda event: self.showinformation(str(self.df.columns), "Column Names"))
+        self.master.bind('<Control-j>', lambda event: self.showinformation(self.effectedlines, "Number of Effected Lines"))
         self.master.bind('<Alt-b>', lambda event: self.removecol())
         self.master.bind('<Alt-r>', lambda event:self.removerow())
         self.master.bind('<Control-t>', lambda event: self.delete_duplicates(False))

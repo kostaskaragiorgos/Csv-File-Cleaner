@@ -98,6 +98,13 @@ class CsvFileCleaner():
         self.master.bind('<Alt-n>', lambda event: self.drop_missing(0))
         self.master.bind('<Control-F1>', lambda event: helpmenu())
         self.master.bind('<Control-i>', lambda event: aboutmenu())
+
+    
+    def showeffectedlines(self):
+        if not ".csv" in self.filename:
+            msg.showerror("ERROR", "NO CSV IMPORTED")
+        else:
+            msg.showinfo("EFFECTED LINES", str(self.effectedlines))
     
     def removecol(self):
         """ removes a column from the file"""

@@ -43,6 +43,7 @@ class CsvFileCleaner():
         self.show_menu.add_command(label="Show shape of the dataset",
                                    accelerator='Ctrl+F',
                                    command=lambda: self.showinformation(self.df.shape, "Shape of the dataset"))
+        self.show_menu.add_command(label="Show effected lines", command=lambda: self.showinformation(self.effectedlines, "Number of Effected Lines"))
         self.menu.add_cascade(label="Show", menu=self.show_menu)
         self.dup_menu = Menu(self.menu, tearoff=0)
         self.dup_menu.add_command(label="Delete all duplicates",
@@ -100,11 +101,6 @@ class CsvFileCleaner():
         self.master.bind('<Control-i>', lambda event: aboutmenu())
 
     
-    def showeffectedlines(self):
-        if not ".csv" in self.filename:
-            msg.showerror("ERROR", "NO CSV IMPORTED")
-        else:
-            msg.showinfo("EFFECTED LINES", str(self.effectedlines))
     
     def removecol(self):
         """ removes a column from the file"""

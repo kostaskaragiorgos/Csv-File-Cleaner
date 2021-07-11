@@ -10,6 +10,29 @@ def helpmenu():
 def aboutmenu():
     """ about menu function """
     msg.showinfo("About", "CSV FILE CLEANER \nVersion 2.0")
+
+def drop_user_input(dt="Integer", flag=0, titlel="", promptl="", minvalue=0, maxvalue=0):
+    """
+Saves the user input
+Args:
+dt: the type of the  dialog(input)
+dialogtype: the dialogtypr
+type: row or column to delete
+title: the title of the window
+prompt: the message of the window
+minvalue: the lowest possible input value
+maxvalue: the biggest possible input value
+Returns:
+    asked: the user input
+"""
+    asked = ""
+    while asked is None or asked == "":
+        if dt == "Integer" and flag == 0:
+            asked = simpledialog.askinteger(title=titlel, prompt=promptl, minvalue=minvalue, maxvalue=maxvalue)
+        else:
+            asked = simpledialog.askstring(title=titlel, prompt=promptl)
+    return asked
+
 class CsvFileCleaner():
     """ CsvFileCleaner Class"""
     def __init__(self, master):
@@ -36,10 +59,10 @@ class CsvFileCleaner():
         self.show_menu = Menu(self.menu, tearoff=0)
         self.show_menu.add_command(label="Show names of columns",
                                    accelerator='Alt+T',
-                                   command= lambda: self.showinformation(str(self.df.columns), "Column Names"))
+                                   command=lambda: self.showinformation(str(self.df.columns), "Column Names"))
         self.show_menu.add_command(label="Show type of columns",
                                    accelerator='Ctrl+V',
-                                   command= lambda: self.showinformation(str(list(self.df.dtypes)),"Column Types" ))
+                                   command=lambda: self.showinformation(str(list(self.df.dtypes)),"Column Types" ))
         self.show_menu.add_command(label="Show shape of the dataset",
                                    accelerator='Ctrl+F',
                                    command=lambda: self.showinformation(self.df.shape, "Shape of the dataset"))
@@ -80,7 +103,7 @@ class CsvFileCleaner():
         self.help_menu.add_command(label="Help", accelerator='Ctrl+F1', command=helpmenu)
         self.menu.add_cascade(label="Help", menu=self.help_menu)
         self.master.config(menu=self.menu)
-        self.master.bind('<Control-v>', lambda event: self.showinformation(str(list(self.df.dtypes)),"Column Types" ))
+        self.master.bind('<Control-v>', lambda event: self.showinformation(str(list(self.df.dtypes)), "Column Types"))
         self.master.bind('<Control-o>', lambda event: self.insertfile())
         self.master.bind('<Control-s>', lambda event: self.save_file())
         self.master.bind('<Control-F4>', lambda event: self.closefile())
@@ -89,7 +112,7 @@ class CsvFileCleaner():
         self.master.bind('<Alt-t>', lambda event: self.showinformation(str(self.df.columns), "Column Names"))
         self.master.bind('<Control-j>', lambda event: self.showinformation(self.effectedlines, "Number of Effected Lines"))
         self.master.bind('<Alt-b>', lambda event: self.removecol())
-        self.master.bind('<Alt-r>', lambda event:self.removerow())
+        self.master.bind('<Alt-r>', lambda event: self.removerow())
         self.master.bind('<Control-t>', lambda event: self.delete_duplicates(False))
         self.master.bind('<Alt-f>', lambda event: self.delete_duplicates('first'))
         self.master.bind('<Alt-l>', lambda event: self.delete_duplicates('last'))
@@ -108,10 +131,10 @@ class CsvFileCleaner():
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
-            asked = self.drop_user_input(titlel="Column", dt="String" ,
-                                         promptl="Columns"+str(self.df.columns.values.tolist())+
-                                                "\nInsert the name of the column"+
-                                                "you want to drop", flag=1)
+            asked = drop_user_input(titlel="Column", dt="String",
+                                    promptl="Columns"+str(self.df.columns.values.tolist())+
+                                    "\nInsert the name of the column"+
+                                    "you want to drop", flag=1)
             if asked in self.df.columns:
                 self.df.drop(asked, axis=1, inplace=True)
                 msg.showinfo("SUCCESS", "COLUMN " + asked + " HAS SUCCESSFULLY REMOVED")
@@ -123,7 +146,7 @@ class CsvFileCleaner():
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
-            row_r = self.drop_user_input(type="Row", titlel="Rows", dt="Integer", flag=0, promptl="Enter the number of row to delete", minvalue = 0, maxvalue=self.df.shape[0])
+            row_r = drop_user_input(titlel="Rows", dt="Integer", flag=0, promptl="Enter the number of row to delete", minvalue=0, maxvalue=self.df.shape[0])
             original = len(self.df)
             self.df.drop(self.df.index[row_r], inplace=True)
             self.effectedlines += abs(original - len(self.df))
@@ -177,36 +200,15 @@ class CsvFileCleaner():
             self.effectedlines = abs(original - len(self.df))
             msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED \nTHERE ARE " + str(self.effectedlines) + " EFFECTED LINES")
     
-    def drop_user_input(self, dt ="Integer", flag=0, type="Row", titlel= "", promptl= "", minvalue=0, maxvalue=0):
-        """
-        Saves the user input
-        Args:
-        dt: the type of the  dialog(input)
-        dialogtype: the dialogtypr
-        type: row or column to delete
-        title: the title of the window
-        prompt: the message of the window
-        minvalue: the lowest possible input value
-        maxvalue: the biggest possible input value
-        Returns:
-            asked: the user input
-        """
-        asked = ""
-        while asked is None or asked == "":
-            if dt == "Integer" and flag == 0:
-                asked = simpledialog.askinteger(title= titlel, prompt= promptl, minvalue= minvalue, maxvalue =  maxvalue)
-            else:
-                asked = simpledialog.askstring(title = titlel, prompt = promptl)
-        return asked
     
     def dropspecific(self, keep):
         """ drops all duplicates from a specific column """
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
-            asked = self.drop_user_input(titlel="Column", promptl= "Columns"+str(self.df.columns.values.tolist())+
-                                                   "\nInsert the name of the column"+
-                                                   "you want to drop", type="Column", flag=1)          
+            asked = drop_user_input(titlel="Column", promptl="Columns"+str(self.df.columns.values.tolist())+
+                                    "\nInsert the name of the column"+
+                                    "you want to drop", flag=1)          
             if asked in self.df.columns:
                 original = len(self.df)
                 self.df.drop_duplicates(subset=asked, keep=keep, inplace=True)

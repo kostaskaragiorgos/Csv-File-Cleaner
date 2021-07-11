@@ -124,9 +124,10 @@ class CsvFileCleaner():
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
             row_r = self.drop_user_input(type="Row", title="Rows", dt="Integer", dialogtype=simpledialog.askinteger, prompt="Enter the number of row to delete", minvalue = 0, maxvalue=self.df.shape[0])
-            
+            original = len(self.df)
             self.df.drop(self.df.index[row_r], inplace=True)
-            msg.showinfo("SUCCESS", "ROW HAS SUCCESSFULLY BEEN REMOVED")
+            self.effectedlines += abs(original - len(self.df))
+            msg.showinfo("SUCCESS", "ROW HAS SUCCESSFULLY BEEN REMOVED \nTHERE ARE " + str(self.effectedlines) + " EFFECTED LINES.")
 
     
 

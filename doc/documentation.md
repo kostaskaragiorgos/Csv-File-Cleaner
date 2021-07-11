@@ -137,6 +137,21 @@ else an informative window pops up
 
 <p><img src="doc images/show/shape of dataset.png"/></p>
 
+## Show effected limes
+
+You can show the number of the effected lines by using Show --> Show effected lines  or using Ctrl+j keybind
+
+<p><img src="doc images/show/show effected lines.png"/></p>
+
+if there is no imported file an error message pops up
+
+<p><img src="doc images/duplicates/no imported error.png"/></p>
+
+else an informative window pops up
+
+
+
+
 # DUPLICATES MENU
 
 ## Delete all duplicates

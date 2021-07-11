@@ -137,6 +137,19 @@ else an informative window pops up
 
 <p><img src="doc images/show/shape of dataset.png"/></p>
 
+## Show type of columns
+
+You can show the type of columns by using Show --> Show type of columns  or using Ctrl+V keybind
+
+<p><img src="doc images/show/show type of columns.png"/></p>
+
+if there is no imported file an error message pops up
+
+<p><img src="doc images/duplicates/no imported error.png"/></p>
+
+else an informative window pops up
+
+
 ## Show effected limes
 
 You can show the number of the effected lines by using Show --> Show effected lines  or using Ctrl+j keybind

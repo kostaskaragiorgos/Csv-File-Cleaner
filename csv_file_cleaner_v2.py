@@ -191,10 +191,7 @@ class CsvFileCleaner():
         Returns:
             asked: the user input
         """
-        if type == "Row" and flag == 0:
-            asked = simpledialog.askinteger(title= titlel, prompt= promptl,minvalue= minvalue, maxvalue =  maxvalue)
-        else:
-            asked = simpledialog.askstring(title = titlel, prompt = promptl)
+        asked = ""
         while asked is None or asked == "":
             if dt == "Integer" and flag == 0:
                 asked = simpledialog.askinteger(title= titlel, prompt= promptl, minvalue= minvalue, maxvalue =  maxvalue)

@@ -114,7 +114,7 @@ class CsvFileCleaner():
                                                 "you want to drop")
             if asked in self.df.columns:
                 self.df.drop(asked, axis=1, inplace=True)
-                msg.showinfo("SUCCESS", "COLUMN HAS SUCCESSFULLY REMOVED")
+                msg.showinfo("SUCCESS", "COLUMN " + asked + " HAS SUCCESSFULLY REMOVED")
             else:
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
 
@@ -124,6 +124,7 @@ class CsvFileCleaner():
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
             row_r = self.drop_user_input(type="Row", title="Rows", dt="Integer", dialogtype=simpledialog.askinteger, prompt="Enter the number of row to delete", minvalue = 0, maxvalue=self.df.shape[0])
+            
             self.df.drop(self.df.index[row_r], inplace=True)
             msg.showinfo("SUCCESS", "ROW HAS SUCCESSFULLY BEEN REMOVED")
 

@@ -177,7 +177,7 @@ class CsvFileCleaner():
             self.effectedlines = abs(original - len(self.df))
             msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED \nTHERE ARE " + str(self.effectedlines) + " EFFECTED LINES")
     
-    def drop_user_input(self, dt = None, dialogtype= None,type=None, title=None, prompt=None, minvalue=None, maxvalue=None):
+    def drop_user_input(self, dt ="Integer", flag=0, type="Row", titlel= "", promptl= "", minvalue=0, maxvalue=0):
         """
         Saves the user input
         Args:
@@ -191,15 +191,15 @@ class CsvFileCleaner():
         Returns:
             asked: the user input
         """
-        if type == "Row":
-            asked = dialogtype(title= title, prompt= prompt,minvalue= minvalue, maxvalue =  maxvalue)
+        if type == "Row" and flag == 0:
+            asked = simpledialog.askinteger(title= titlel, prompt= promptl,minvalue= minvalue, maxvalue =  maxvalue)
         else:
-            asked = dialogtype(title = title, prompt = prompt)
+            asked = simpledialog.askstring(title = titlel, prompt = promptl)
         while asked is None or asked == "":
-            if dt == "Integer":
-                asked = dialogtype(title= title, prompt= prompt, minvalue= minvalue, maxvalue =  maxvalue)
+            if dt == "Integer" and flag == 0:
+                asked = simpledialog.askinteger(title= titlel, prompt= promptl, minvalue= minvalue, maxvalue =  maxvalue)
             else:
-                asked = dialogtype(title = title, prompt = prompt)
+                asked = simpledialog.askstring(title = titlel, prompt = promptl)
         return asked
     
     def dropspecific(self, keep):
@@ -207,12 +207,14 @@ class CsvFileCleaner():
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
-            self.drop_user_input(title="Column", prompt= "Columns"+str(self.df.columns.values.tolist())+
+            asked = self.drop_user_input(titlel="Column", promptl= "Columns"+str(self.df.columns.values.tolist())+
                                                    "\nInsert the name of the column"+
-                                                   "you want to drop")          
-            if self.asked_column in self.df.columns:
-                self.df.drop_duplicates(subset=self.asked_column, keep=keep, inplace=True)
-                msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED")
+                                                   "you want to drop", type="Column", flag=1)          
+            if asked in self.df.columns:
+                original = len(self.df)
+                self.df.drop_duplicates(subset=asked, keep=keep, inplace=True)
+                self.effectedlines += abs(original - len(self.df))
+                msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED\nTHERE ARE " + str(self.effectedlines) + " EFFECTED LINES")
             else:
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
     def drop_missing(self, axis):

@@ -165,12 +165,9 @@ class CsvFileCleaner():
             original = len(self.df)
             self.df.drop(self.df.index[row_r], inplace=True)
             self.effectedlines += abs(original - len(self.df))
-            msg.showinfo("SUCCESS", "ROW HAS SUCCESSFULLY BEEN REMOVED \nTHERE ARE " + str(self.effectedlines) + " EFFECTED LINES.\nTHERE ARE " + str(len(self.df)) + "REMAINING LINES")
+            msg.showinfo("SUCCESS", "ROW HAS SUCCESSFULLY BEEN REMOVED \nTHERE ARE " + str(self.effectedlines) + " EFFECTED LINES.\nTHERE ARE " + str(len(self.df)) + " REMAINING LINES")
 
     
-
-
-
 
     def checkifcsv(self, filenamesave):
         """ checks if the inserted file is a csv file """
@@ -203,7 +200,7 @@ class CsvFileCleaner():
             original = len(self.df)
             self.df.drop_duplicates(keep=keep, inplace=True)
             self.effectedlines = abs(original - len(self.df))
-            msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED \nTHERE ARE " + str(self.effectedlines) + " EFFECTED LINES")
+            msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED \nTHERE ARE " + str(self.effectedlines) + " EFFECTED LINES.\nTHERE ARE " + str(len(self.df)) + " REMAINING LINES")
     
     
     def dropspecific(self, keep):
@@ -218,7 +215,7 @@ class CsvFileCleaner():
                 original = len(self.df)
                 self.df.drop_duplicates(subset=asked, keep=keep, inplace=True)
                 self.effectedlines += abs(original - len(self.df))
-                msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED\nTHERE ARE " + str(self.effectedlines) + " EFFECTED LINES")
+                msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED\nTHERE ARE " + str(self.effectedlines) + " EFFECTED LINES.\nTHERE ARE " + str(len(self.df)) + " REMAINING LINES")
             else:
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
     def drop_missing(self, axis):
@@ -229,7 +226,7 @@ class CsvFileCleaner():
             original = len(self.df)
             self.df.dropna(axis=axis, inplace=True)
             self.effectedlines += abs(original-self.effectedlines)
-            msg.showinfo("MISSING VALUES", "MISSING VALUES HAS SUCCESSFULLY REMOVED\nTHERE ARE " +str(self.effectedlines)+ " EFFECTED LINES")
+            msg.showinfo("MISSING VALUES", "MISSING VALUES HAS SUCCESSFULLY REMOVED\nTHERE ARE " +str(self.effectedlines)+ " EFFECTED LINES\nTHERE ARE " + str(len(self.df)) + " REMAINING LINES")
     def closefile(self):
         """ closes the csv file """
         if not ".csv" in self.filename:
@@ -252,6 +249,7 @@ class CsvFileCleaner():
                 self.df = pd.read_csv(self.filename)
         else:
             msg.showerror("INSERT A CSV", "YOU HAVE TO INSERT A CSV FILE")
+
     def insertfile(self):
         """ inserts the csv file """
         if ".csv" in self.filename:

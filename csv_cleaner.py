@@ -115,7 +115,12 @@ class CsvCleaner():
             self.effectedlines = abs(original - len(self.df))
             msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED \nTHERE ARE " + str(self.effectedlines) + " EFFECTED LINES.\nTHERE ARE " + str(len(self.df)) + " REMAINING LINES")
     
-    
+    def dropduplicatecolumns(self):
+        if not ".csv" in self.filename:
+            msg.showerror("ERROR", "NO CSV IMPORTED")
+        else:
+            self.df = self.df.loc[:,~self.df.columns.duplicated()]
+            
     def dropspecific(self, keep):
         """ drops all duplicates from a specific column """
         if not ".csv" in self.filename:

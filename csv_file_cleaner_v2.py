@@ -1,5 +1,6 @@
 """
 csv_file_cleaner_version_2
+The gui class
 """
 from tkinter import Tk, Menu, simpledialog
 from tkinter import messagebox as msg, filedialog
@@ -61,6 +62,8 @@ class CsvFileCleaner(CsvCleaner):
         self.dup_menu.add_command(label="Delete all duplicates except last by specific column",
                                   accelerator='Ctrl+L',
                                   command=lambda: self.dropspecific('last'))
+        self.dup_menu.add_command(label="Drop duplicate Columns",
+                                   command= self.dropduplicatecolumns)
         self.menu.add_cascade(label="Duplicates", menu=self.dup_menu)
         self.miss_v = Menu(self.menu, tearoff=0)
         self.miss_v.add_command(label="Drop columns with missing values",

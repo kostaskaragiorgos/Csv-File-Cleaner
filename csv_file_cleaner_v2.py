@@ -4,12 +4,27 @@ csv_file_cleaner_version_2
 from tkinter import Tk, Menu, simpledialog
 from tkinter import messagebox as msg, filedialog
 import pandas as pd
+
 def helpmenu():
     """ help menu funciton """
     msg.showinfo("Help", "THE PURPUSE OF THIS APP IS TO HELP YOU CLEAN YOUR 'MESSY' CSV FILES ")
 def aboutmenu():
     """ about menu function """
     msg.showinfo("About", "CSV FILE CLEANER \nVersion 2.0")
+
+
+def showinformation(filename = "", typeofinfo=None, messagetitle=None):
+    """
+    pops up an informative window based on input
+    Args:
+        filename: the name of the file
+        typeofinfo: the desired info
+        messagetitle: the window title
+    """
+    if  not ".csv" in filename:
+        msg.showerror("ERROR", "NO CSV IMPORTED")
+    else:
+        msg.showinfo(title=str(messagetitle), message=str(typeofinfo))
 
 def drop_user_input(dt="Integer", flag=0, titlel="", promptl="", minvalue=0, maxvalue=0):
     """
@@ -150,21 +165,11 @@ class CsvFileCleaner():
             original = len(self.df)
             self.df.drop(self.df.index[row_r], inplace=True)
             self.effectedlines += abs(original - len(self.df))
-            msg.showinfo("SUCCESS", "ROW HAS SUCCESSFULLY BEEN REMOVED \nTHERE ARE " + str(self.effectedlines) + " EFFECTED LINES.")
+            msg.showinfo("SUCCESS", "ROW HAS SUCCESSFULLY BEEN REMOVED \nTHERE ARE " + str(self.effectedlines) + " EFFECTED LINES.\nTHERE ARE " + str(len(self.df)) + "REMAINING LINES")
 
     
 
-    def showinformation(self, typeofinfo=None, messagetitle=None):
-        """
-        pops up an informative window based on input
-        Args:
-            typeofinfo: the desired info
-            messagetitle: the window title
-        """
-        if  not ".csv" in self.filename:
-            msg.showerror("ERROR", "NO CSV IMPORTED")
-        else:
-            msg.showinfo(title=str(messagetitle), message=str(typeofinfo))
+
 
 
     def checkifcsv(self, filenamesave):

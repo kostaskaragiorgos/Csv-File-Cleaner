@@ -24,6 +24,7 @@ Delete all duplicates except last Alt+L
 Delete all duplicates by specific column Alt+C
 Delete all duplicates except first by specific column Ctrl+B
 Delete all duplicates except last by specific column Ctrl+L
+Delete duplicate Columns Ctrl+P
 ============================================================
 Missing Values
 ======================================

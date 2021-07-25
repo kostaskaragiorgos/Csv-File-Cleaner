@@ -284,6 +284,10 @@ You can delete all duplicate columns by using Duplicates --> Delete duplicate co
 
 <p><img src="doc images/duplicates/delete duplicate columns.png" title="Delete Duplicate Columns"/></p>
 
+f there is no imported file an error message pops up
+
+<p><img src="doc images/duplicates/no imported error.png"/></p>
+
 # MISSING VALUES MENU
 
 ## Drop columns with missing values

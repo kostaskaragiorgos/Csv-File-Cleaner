@@ -26,7 +26,8 @@
   <li> doc (documentation folder) </li>
   <li> images folder(images folder) </li>
   <li> csv_file_cleaner_v2 keybinds.txt(keybinds file) </li>
-  <li> csv_file_cleaner_v2.py(the python file) </li>
+  <li> csv_file_cleaner_v2.py(python file) </li>
+  <li> csv_cleaner.py(python file)
  </ul>
 
 ## Dependencies
@@ -91,6 +92,7 @@ All project documentation is located in the `./doc`  folder.
   <li> Delete all duplicates by specific column(Alt+C) </li>
   <li> Delete all duplicates except first by specific column(Ctrl+B) </li>
   <li> Delete all duplicates except last by specific column(Ctrl+L) </li>
+  <li> Delete duplicate Columns(Alt+P) </li>
   <li> Drop columns with missing values(Alt+M) </li>
   <li> Drops rows with missing values(Alt+N) </li>
   <li> About(Ctrl+I)</li>

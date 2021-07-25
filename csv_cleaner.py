@@ -28,7 +28,7 @@ def showinformation(filename="", typeofinfo=None, messagetitle=None):
     else:
         msg.showinfo(title=str(messagetitle), message=str(typeofinfo))
 
-def drop_user_input(dt="Integer", flag=0, titlel="", promptl="", minvalue=0, maxvalue=0):
+def drop_user_input(dt="Integer", titlel="", promptl="", minvalue=0, maxvalue=0):
     """
 Saves the user input
 Args:
@@ -44,7 +44,7 @@ Returns:
 """
     asked = ""
     while asked is None or asked == "":
-        if dt == "Integer" and flag == 0:
+        if dt == "Integer":
             asked = simpledialog.askinteger(title=titlel,
                                             prompt=promptl,
                                             minvalue=minvalue,
@@ -70,7 +70,7 @@ class CsvCleaner():
             asked = drop_user_input(titlel="Column", dt="String",
                                     promptl="Columns"+str(self.df.columns.values.tolist())+
                                     "\nInsert the name of the column"+
-                                    "you want to drop", flag=1)
+                                    "you want to drop")
             if asked in self.df.columns:
                 self.df.drop(asked, axis=1, inplace=True)
                 msg.showinfo("SUCCESS",
@@ -86,7 +86,7 @@ class CsvCleaner():
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
             row_r = drop_user_input(titlel="Rows",
-                                    dt="Integer", flag=0,
+                                    dt="Integer",
                                     promptl="Enter the number of row to delete",
                                     minvalue=0, maxvalue=self.df.shape[0])
             original = len(self.df)
@@ -146,7 +146,7 @@ class CsvCleaner():
         else:
             asked = drop_user_input(titlel="Column", promptl="Columns"+str(self.df.columns.values.tolist())+
                                     "\nInsert the name of the column"+
-                                    "you want to drop", flag=1)          
+                                    "you want to drop", dt="String")          
             if asked in self.df.columns:
                 original = len(self.df)
                 self.df.drop_duplicates(subset=asked, keep=keep, inplace=True)

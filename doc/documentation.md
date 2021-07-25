@@ -278,6 +278,12 @@ else a success message pops up
 
 <p><img src ="doc images/duplicates/delete all duplicates success.png" title="Delete duplicates"/></p>
 
+## DELETE DUPLICATE COLUMNS
+
+You can delete all duplicate columns by using Duplicates --> Delete duplicate columns or by using Ctrl + P keybind
+
+<p><img src="doc images/duplicates/delete duplicate columns.png" title="Delete Duplicate Columns"/></p>
+
 # MISSING VALUES MENU
 
 ## Drop columns with missing values

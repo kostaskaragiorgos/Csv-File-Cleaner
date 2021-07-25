@@ -1,7 +1,7 @@
 """
 csv_cleaner_version_2
 """
-from tkinter import Tk, Menu, simpledialog
+from tkinter import  simpledialog
 from tkinter import messagebox as msg, filedialog
 import pandas as pd
 
@@ -15,7 +15,7 @@ def aboutmenu():
     msg.showinfo("About", "CSV FILE CLEANER \nVersion 2.0")
 
 
-def showinformation(filename = "", typeofinfo=None, messagetitle=None):
+def showinformation(filename="", typeofinfo=None, messagetitle=None):
     """
     pops up an informative window based on input
     Args:
@@ -23,7 +23,7 @@ def showinformation(filename = "", typeofinfo=None, messagetitle=None):
         typeofinfo: the desired info
         messagetitle: the window title
     """
-    if  not ".csv" in filename:
+    if ".csv" not in filename:
         msg.showerror("ERROR", "NO CSV IMPORTED")
     else:
         msg.showinfo(title=str(messagetitle), message=str(typeofinfo))
@@ -45,14 +45,21 @@ Returns:
     asked = ""
     while asked is None or asked == "":
         if dt == "Integer" and flag == 0:
-            asked = simpledialog.askinteger(title=titlel, prompt=promptl, minvalue=minvalue, maxvalue=maxvalue)
+            asked = simpledialog.askinteger(title=titlel,
+                                            prompt=promptl,
+                                            minvalue=minvalue,
+                                            maxvalue=maxvalue)
         else:
             asked = simpledialog.askstring(title=titlel, prompt=promptl)
     return asked
 
 class CsvCleaner():
-    def __init__(self):
-        pass
+    """csv file cleaner class"""
+    def __init__(self, master):
+        self.effectedlines = 0
+        self.filename = ""
+        self.df = pd.DataFrame()
+        self.master = master
 
     def removecol(self):
         """ removes a column from the file"""
@@ -65,22 +72,28 @@ class CsvCleaner():
                                     "you want to drop", flag=1)
             if asked in self.df.columns:
                 self.df.drop(asked, axis=1, inplace=True)
-                msg.showinfo("SUCCESS", "COLUMN " + asked + " HAS SUCCESSFULLY REMOVED.\n THERE ARE "+ str(self.df.shape[1]) +"COLUMNS REMAINING")
+                msg.showinfo("SUCCESS",
+                             "COLUMN " +
+                             asked + " HAS SUCCESSFULLY REMOVED.\n THERE ARE "+
+                             str(self.df.shape[1]) +"COLUMNS REMAINING")
             else:
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
 
     def removerow(self):
         """ removes a row from the file"""
-        if not ".csv" in self.filename:
+        if ".csv" not in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
-            row_r = drop_user_input(titlel="Rows", dt="Integer", flag=0, promptl="Enter the number of row to delete", minvalue=0, maxvalue=self.df.shape[0])
+            row_r = drop_user_input(titlel="Rows",
+                                    dt="Integer", flag=0,
+                                    promptl="Enter the number of row to delete",
+                                    minvalue=0, maxvalue=self.df.shape[0])
             original = len(self.df)
             self.df.drop(self.df.index[row_r], inplace=True)
             self.effectedlines += abs(original - len(self.df))
-            msg.showinfo("SUCCESS", "ROW HAS SUCCESSFULLY BEEN REMOVED \nTHERE ARE " + str(self.effectedlines) + " EFFECTED LINES.\nTHERE ARE " + str(len(self.df)) + " REMAINING LINES")
-
-    
+            msg.showinfo("SUCCESS", "ROW HAS SUCCESSFULLY BEEN REMOVED \nTHERE ARE " +
+                         str(self.effectedlines) + " EFFECTED LINES.\nTHERE ARE " +
+                         str(len(self.df)) + " REMAINING LINES")
 
     def checkifcsv(self, filenamesave):
         """ checks if the inserted file is a csv file """
@@ -100,31 +113,34 @@ class CsvCleaner():
             msg.showerror("NO SAVE", "NO FILE SAVED")
     def save_file(self):
         """ saves the new csv file"""
-        if not ".csv" in self.filename:
+        if ".csv" not in self.filename:
             msg.showerror("ERROR", "NO CSV TO SAVE")
         else:
             save = msg.askyesno("SAVE FILE", "DO YOU WANT TO SAVE A NEW CSV FILE??")
             self.savefunction(save)
     def delete_duplicates(self, keep):
         """ removes duplicates """
-        if not ".csv" in self.filename:
+        if  ".csv" not in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
             original = len(self.df)
             self.df.drop_duplicates(keep=keep, inplace=True)
             self.effectedlines = abs(original - len(self.df))
-            msg.showinfo("DUPLICATES", "DUPLICATES HAVE SUCCESSFULLY REMOVED \nTHERE ARE " + str(self.effectedlines) + " EFFECTED LINES.\nTHERE ARE " + str(len(self.df)) + " REMAINING LINES")
+            msg.showinfo("DUPLICATES", "DUPLICATES HAVE SUCCESSFULLY REMOVED \nTHERE ARE " +
+                         str(self.effectedlines) + " EFFECTED LINES.\nTHERE ARE " +
+                         str(len(self.df)) + " REMAINING LINES")
     
     def dropduplicatecolumns(self):
-        if not ".csv" in self.filename:
+        """removes the duplicate columns"""
+        if  ".csv" not in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
-            self.df = self.df.loc[:,~self.df.columns.duplicated()]
+            self.df = self.df.loc[:, ~self.df.columns.duplicated()]
             msg.showinfo("DUPLICATES", "DUPLICATE COLUMNS HAVE  SUCCESSFULLY REMOVED\n THERE ARE " + str(self.df.shape[1])+ " REMAINING COLUMNS")
             
     def dropspecific(self, keep):
         """ drops all duplicates from a specific column """
-        if not ".csv" in self.filename:
+        if ".csv" not in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
             asked = drop_user_input(titlel="Column", promptl="Columns"+str(self.df.columns.values.tolist())+
@@ -139,7 +155,7 @@ class CsvCleaner():
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
     def drop_missing(self, axis):
         """ deletes columns or rows with missing values"""
-        if not ".csv" in self.filename:
+        if ".csv" not in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
             original = len(self.df)
@@ -148,7 +164,7 @@ class CsvCleaner():
             msg.showinfo("MISSING VALUES", "MISSING VALUES HAS SUCCESSFULLY REMOVED\nTHERE ARE " +str(self.effectedlines)+ " EFFECTED LINES\nTHERE ARE " + str(len(self.df)) + " REMAINING LINES")
     def closefile(self):
         """ closes the csv file """
-        if not ".csv" in self.filename:
+        if ".csv" not in self.filename:
             msg.showerror("ERROR", "NO CSV TO CLOSE")
         else:
             self.filename = ""

@@ -120,7 +120,7 @@ class CsvCleaner():
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
             self.df = self.df.loc[:,~self.df.columns.duplicated()]
-            msg.showinfo("DUPLICATES", "DUPLICATE COLUMNS HAVE  SUCCESSFULLY REMOVED\n THERE ARE" + str(self.shape[1])+ " REMAINING COLUMNS")
+            msg.showinfo("DUPLICATES", "DUPLICATE COLUMNS HAVE  SUCCESSFULLY REMOVED\n THERE ARE " + str(self.df.shape[1])+ " REMAINING COLUMNS")
             
     def dropspecific(self, keep):
         """ drops all duplicates from a specific column """

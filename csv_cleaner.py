@@ -54,6 +54,7 @@ Returns:
     return asked
 
 class CsvCleaner():
+    
     """csv file cleaner class"""
     def __init__(self, master):
         self.effectedlines = 0

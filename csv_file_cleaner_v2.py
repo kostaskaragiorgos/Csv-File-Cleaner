@@ -2,10 +2,8 @@
 csv_file_cleaner_version_2
 The gui class
 """
-from tkinter import Tk, Menu, simpledialog
-from tkinter import messagebox as msg, filedialog
-import pandas as pd
-from csv_cleaner import CsvCleaner, aboutmenu, helpmenu, showinformation, drop_user_input
+from tkinter import Tk, Menu
+from csv_cleaner import CsvCleaner, aboutmenu, helpmenu, showinformation
 
 
 class CsvFileCleaner(CsvCleaner):
@@ -26,20 +24,33 @@ class CsvFileCleaner(CsvCleaner):
         self.file_menu.add_command(label="Exit", accelerator='Alt+F4', command=self.exitmenu)
         self.menu.add_cascade(label="File", menu=self.file_menu)
         self.remove_menu = Menu(self.menu, tearoff=0)
-        self.remove_menu.add_command(label="Remove Row", accelerator='Alt+R', command=self.removerow)
-        self.remove_menu.add_command(label="Remove column", accelerator='Alt+B', command=self.removecol)
+        self.remove_menu.add_command(label="Remove Row",
+                                     accelerator='Alt+R',
+                                     command=self.removerow)
+        self.remove_menu.add_command(label="Remove column",
+                                     accelerator='Alt+B', command=self.removecol)
         self.menu.add_cascade(label="Remove", menu=self.remove_menu)
         self.show_menu = Menu(self.menu, tearoff=0)
         self.show_menu.add_command(label="Show names of columns",
                                    accelerator='Alt+T',
-                                   command=lambda: showinformation(self.filename,str(self.df.columns), "Column Names"))
+                                   command=lambda: showinformation(self.filename,
+                                                                   str(self.df.columns),
+                                                                   "Column Names"))
         self.show_menu.add_command(label="Show type of columns",
                                    accelerator='Ctrl+V',
-                                   command=lambda: showinformation(self.filename, str(list(self.df.dtypes)),"Column Types" ))
+                                   command=lambda: showinformation(self.filename,
+                                                                   str(list(self.df.dtypes)),
+                                                                   "Column Types"))
         self.show_menu.add_command(label="Show shape of the dataset",
                                    accelerator='Ctrl+F',
-                                   command=lambda: showinformation(self.filename, self.df.shape, "Shape of the dataset"))
-        self.show_menu.add_command(label="Show effected lines", accelerator='Ctrl+J', command=lambda: showinformation(self.filename, self.effectedlines, "Number of Effected Lines"))
+                                   command=lambda: showinformation(self.filename,
+                                                                   self.df.shape,
+                                                                   "Shape of the dataset"))
+        self.show_menu.add_command(label="Show effected lines",
+                                   accelerator='Ctrl+J',
+                                   command=lambda: showinformation(self.filename,
+                                                                   self.effectedlines,
+                                                                   "Number of Effected Lines"))
         self.menu.add_cascade(label="Show", menu=self.show_menu)
         self.dup_menu = Menu(self.menu, tearoff=0)
         self.dup_menu.add_command(label="Delete all duplicates",
@@ -62,7 +73,7 @@ class CsvFileCleaner(CsvCleaner):
                                   command=lambda: self.dropspecific('last'))
         self.dup_menu.add_command(label="Delete duplicate Columns",
                                   accelerator='Alt+P',
-                                  command= self.dropduplicatecolumns)
+                                  command=self.dropduplicatecolumns)
         self.menu.add_cascade(label="Duplicates", menu=self.dup_menu)
         self.miss_v = Menu(self.menu, tearoff=0)
         self.miss_v.add_command(label="Drop columns with missing values",
@@ -79,12 +90,16 @@ class CsvFileCleaner(CsvCleaner):
         self.help_menu.add_command(label="Help", accelerator='Ctrl+F1', command=helpmenu)
         self.menu.add_cascade(label="Help", menu=self.help_menu)
         self.master.config(menu=self.menu)
-        self.master.bind('<Control-v>', lambda event: showinformation(self.filename, str(list(self.df.dtypes)), "Column Types"))
+        self.master.bind('<Control-v>', lambda event: showinformation(self.filename,
+                                                                      str(list(self.df.dtypes)),
+                                                                      "Column Types"))
         self.master.bind('<Control-o>', lambda event: self.insertfile())
         self.master.bind('<Control-s>', lambda event: self.save_file())
         self.master.bind('<Control-F4>', lambda event: self.closefile())
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
-        self.master.bind('<Control-f>', lambda event: showinformation(self.filename, self.df.shape, "Shape of the dataset"))
+        self.master.bind('<Control-f>', lambda event: showinformation(self.filename,
+                                                                      self.df.shape,
+                                                                      "Shape of the dataset"))
         self.master.bind('<Alt-t>', lambda event: showinformation(self.filename, str(self.df.columns), "Column Names"))
         self.master.bind('<Control-j>', lambda event: showinformation(self.filename, self.effectedlines, "Number of Effected Lines"))
         self.master.bind('<Alt-b>', lambda event: self.removecol())

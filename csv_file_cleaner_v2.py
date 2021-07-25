@@ -10,14 +10,11 @@ from csv_cleaner import CsvCleaner, aboutmenu, helpmenu, showinformation, drop_u
 
 class CsvFileCleaner(CsvCleaner):
     """ CsvFileCleaner Class"""
-    def __init__(self, master):
-        self.master = master
+    def __init__(self):
+        
         self.master.title("Csv-File-Cleaner")
         self.master.geometry("250x120")
         self.master.resizable(False, False)
-        self.effectedlines = 0
-        self.filename = ""
-        self.df = pd.DataFrame()
         self.menu = Menu(self.master)
         self.file_menu = Menu(self.menu, tearoff=0)
         self.file_menu.add_command(label="Insert a csv file",

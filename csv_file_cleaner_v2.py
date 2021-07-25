@@ -10,8 +10,9 @@ from csv_cleaner import CsvCleaner, aboutmenu, helpmenu, showinformation, drop_u
 
 class CsvFileCleaner(CsvCleaner):
     """ CsvFileCleaner Class"""
-    def __init__(self):
-        
+    def __init__(self, master):
+        super().__init__(self)
+        self.master = master
         self.master.title("Csv-File-Cleaner")
         self.master.geometry("250x120")
         self.master.resizable(False, False)
@@ -31,14 +32,14 @@ class CsvFileCleaner(CsvCleaner):
         self.show_menu = Menu(self.menu, tearoff=0)
         self.show_menu.add_command(label="Show names of columns",
                                    accelerator='Alt+T',
-                                   command=lambda: self.showinformation(self.filename,str(self.df.columns), "Column Names"))
+                                   command=lambda: showinformation(self.filename,str(self.df.columns), "Column Names"))
         self.show_menu.add_command(label="Show type of columns",
                                    accelerator='Ctrl+V',
-                                   command=lambda: self.showinformation(self.filename, str(list(self.df.dtypes)),"Column Types" ))
+                                   command=lambda: showinformation(self.filename, str(list(self.df.dtypes)),"Column Types" ))
         self.show_menu.add_command(label="Show shape of the dataset",
                                    accelerator='Ctrl+F',
-                                   command=lambda: self.showinformation(self.filename, self.df.shape, "Shape of the dataset"))
-        self.show_menu.add_command(label="Show effected lines", accelerator='Ctrl+J', command=lambda: self.showinformation(self.filename, self.effectedlines, "Number of Effected Lines"))
+                                   command=lambda: showinformation(self.filename, self.df.shape, "Shape of the dataset"))
+        self.show_menu.add_command(label="Show effected lines", accelerator='Ctrl+J', command=lambda: showinformation(self.filename, self.effectedlines, "Number of Effected Lines"))
         self.menu.add_cascade(label="Show", menu=self.show_menu)
         self.dup_menu = Menu(self.menu, tearoff=0)
         self.dup_menu.add_command(label="Delete all duplicates",
@@ -78,14 +79,14 @@ class CsvFileCleaner(CsvCleaner):
         self.help_menu.add_command(label="Help", accelerator='Ctrl+F1', command=helpmenu)
         self.menu.add_cascade(label="Help", menu=self.help_menu)
         self.master.config(menu=self.menu)
-        self.master.bind('<Control-v>', lambda event: self.showinformation(self.filename, str(list(self.df.dtypes)), "Column Types"))
+        self.master.bind('<Control-v>', lambda event: showinformation(self.filename, str(list(self.df.dtypes)), "Column Types"))
         self.master.bind('<Control-o>', lambda event: self.insertfile())
         self.master.bind('<Control-s>', lambda event: self.save_file())
         self.master.bind('<Control-F4>', lambda event: self.closefile())
         self.master.bind('<Alt-F4>', lambda event: self.exitmenu())
-        self.master.bind('<Control-f>', lambda event: self.showinformation(self.filename, self.df.shape, "Shape of the dataset"))
-        self.master.bind('<Alt-t>', lambda event: self.showinformation(self.filename, str(self.df.columns), "Column Names"))
-        self.master.bind('<Control-j>', lambda event: self.showinformation(self.filename, self.effectedlines, "Number of Effected Lines"))
+        self.master.bind('<Control-f>', lambda event: showinformation(self.filename, self.df.shape, "Shape of the dataset"))
+        self.master.bind('<Alt-t>', lambda event: showinformation(self.filename, str(self.df.columns), "Column Names"))
+        self.master.bind('<Control-j>', lambda event: showinformation(self.filename, self.effectedlines, "Number of Effected Lines"))
         self.master.bind('<Alt-b>', lambda event: self.removecol())
         self.master.bind('<Alt-r>', lambda event: self.removerow())
         self.master.bind('<Control-t>', lambda event: self.delete_duplicates(False))

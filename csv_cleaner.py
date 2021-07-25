@@ -113,13 +113,14 @@ class CsvCleaner():
             original = len(self.df)
             self.df.drop_duplicates(keep=keep, inplace=True)
             self.effectedlines = abs(original - len(self.df))
-            msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED \nTHERE ARE " + str(self.effectedlines) + " EFFECTED LINES.\nTHERE ARE " + str(len(self.df)) + " REMAINING LINES")
+            msg.showinfo("DUPLICATES", "DUPLICATES HAVE SUCCESSFULLY REMOVED \nTHERE ARE " + str(self.effectedlines) + " EFFECTED LINES.\nTHERE ARE " + str(len(self.df)) + " REMAINING LINES")
     
     def dropduplicatecolumns(self):
         if not ".csv" in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
             self.df = self.df.loc[:,~self.df.columns.duplicated()]
+            msg.showinfo("DUPLICATES", "DUPLICATE COLUMNS HAVE  SUCCESSFULLY REMOVED\n THERE ARE" + str(self.shape[1])+ " REMAINING COLUMNS")
             
     def dropspecific(self, keep):
         """ drops all duplicates from a specific column """
@@ -133,7 +134,7 @@ class CsvCleaner():
                 original = len(self.df)
                 self.df.drop_duplicates(subset=asked, keep=keep, inplace=True)
                 self.effectedlines += abs(original - len(self.df))
-                msg.showinfo("DUPLICATES", "DUPLICATES HAS SUCCESSFULLY REMOVED\nTHERE ARE " + str(self.effectedlines) + " EFFECTED LINES.\nTHERE ARE " + str(len(self.df)) + " REMAINING LINES")
+                msg.showinfo("DUPLICATES", "DUPLICATES HAVE SUCCESSFULLY REMOVED\nTHERE ARE " + str(self.effectedlines) + " EFFECTED LINES.\nTHERE ARE " + str(len(self.df)) + " REMAINING LINES")
             else:
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
     def drop_missing(self, axis):

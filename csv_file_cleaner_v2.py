@@ -63,7 +63,8 @@ class CsvFileCleaner(CsvCleaner):
                                   accelerator='Ctrl+L',
                                   command=lambda: self.dropspecific('last'))
         self.dup_menu.add_command(label="Drop duplicate Columns",
-                                   command= self.dropduplicatecolumns)
+                                  accelerator='Alt+P',
+                                  command= self.dropduplicatecolumns)
         self.menu.add_cascade(label="Duplicates", menu=self.dup_menu)
         self.miss_v = Menu(self.menu, tearoff=0)
         self.miss_v.add_command(label="Drop columns with missing values",
@@ -96,6 +97,7 @@ class CsvFileCleaner(CsvCleaner):
         self.master.bind('<Alt-c>', lambda event: self.dropspecific(False))
         self.master.bind('<Control-b>', lambda event: self.dropspecific('first'))
         self.master.bind('<Control-l>', lambda event: self.dropspecific('last'))
+        self.master.bind('<Alt-p>', lambda event: self.dropduplicatecolumns())
         self.master.bind('<Alt-m>', lambda event: self.drop_missing(1))
         self.master.bind('<Alt-n>', lambda event: self.drop_missing(0))
         self.master.bind('<Control-F1>', lambda event: helpmenu())

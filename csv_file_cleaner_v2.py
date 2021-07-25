@@ -62,7 +62,7 @@ class CsvFileCleaner(CsvCleaner):
         self.dup_menu.add_command(label="Delete all duplicates except last by specific column",
                                   accelerator='Ctrl+L',
                                   command=lambda: self.dropspecific('last'))
-        self.dup_menu.add_command(label="Drop duplicate Columns",
+        self.dup_menu.add_command(label="Delete duplicate Columns",
                                   accelerator='Alt+P',
                                   command= self.dropduplicatecolumns)
         self.menu.add_cascade(label="Duplicates", menu=self.dup_menu)

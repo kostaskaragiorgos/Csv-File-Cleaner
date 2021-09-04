@@ -175,6 +175,7 @@ class CsvCleaner():
         if ".csv" not in self.filename:
             msg.showerror("ERROR", "NO CSV TO CLOSE")
         else:
+            savechanges(self.df, self.effectedlines, self.filename)
             self.filename = ""
             self.effectedlines = 0
             msg.showinfo("SUSSESS", "YOUR CSV FILE HAS SUCCESFULLY CLOSED")

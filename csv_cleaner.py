@@ -28,6 +28,13 @@ def showinformation(filename="", typeofinfo=None, messagetitle=None):
     else:
         msg.showinfo(title=str(messagetitle), message=str(typeofinfo))
 
+def savechanges(dataframe, effectedlines, filename):
+    if effectedlines > 0:
+        ans = msg.askquestion("SAVE CHANGES", "DO YOU WANT TO SAVE THE CHANGES BEFORE CLOSE???")
+        if ans:
+            dataframe.to_csv(filename)
+
+
 def drop_user_input(dt="Integer", titlel="", promptl="", minvalue=0, maxvalue=0):
     """
 Saves the user input

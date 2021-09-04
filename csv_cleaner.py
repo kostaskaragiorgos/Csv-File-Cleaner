@@ -169,6 +169,7 @@ class CsvCleaner():
             msg.showerror("ERROR", "NO CSV TO CLOSE")
         else:
             self.filename = ""
+            self.effectedlines = 0
             msg.showinfo("SUSSESS", "YOUR CSV FILE HAS SUCCESFULLY CLOSED")
     def checkfile(self):
         """ checks if inserted file is a csv """

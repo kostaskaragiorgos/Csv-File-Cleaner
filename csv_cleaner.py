@@ -29,6 +29,12 @@ def showinformation(filename="", typeofinfo=None, messagetitle=None):
         msg.showinfo(title=str(messagetitle), message=str(typeofinfo))
 
 def savechanges(dataframe, effectedlines, filename):
+    """saves the file after changes.
+    Args:
+        dataframe: the dataframe of the file
+        effectedlines: the number of effected lines
+        filename: the name of the file
+    """
     if effectedlines > 0:
         ans = msg.askquestion("SAVE CHANGES", "DO YOU WANT TO SAVE THE CHANGES BEFORE CLOSE???")
         if ans:

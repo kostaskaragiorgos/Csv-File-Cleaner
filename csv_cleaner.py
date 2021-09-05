@@ -67,7 +67,7 @@ Returns:
     return asked
 
 class CsvCleaner():
-    
+
     """csv file cleaner class"""
     def __init__(self, master):
         self.effectedlines = 0
@@ -143,28 +143,36 @@ class CsvCleaner():
             msg.showinfo("DUPLICATES", "DUPLICATES HAVE SUCCESSFULLY REMOVED \nTHERE ARE " +
                          str(self.effectedlines) + " EFFECTED LINES.\nTHERE ARE " +
                          str(len(self.df)) + " REMAINING LINES")
-    
+
     def dropduplicatecolumns(self):
         """removes the duplicate columns"""
         if  ".csv" not in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
             self.df = self.df.loc[:, ~self.df.columns.duplicated()]
-            msg.showinfo("DUPLICATES", "DUPLICATE COLUMNS HAVE  SUCCESSFULLY REMOVED\n THERE ARE " + str(self.df.shape[1])+ " REMAINING COLUMNS")
-            
+            msg.showinfo("DUPLICATES",
+                         "DUPLICATE COLUMNS HAVE  SUCCESSFULLY REMOVED\n THERE ARE "
+                         + str(self.df.shape[1])+
+                         " REMAINING COLUMNS")
+
     def dropspecific(self, keep):
         """ drops all duplicates from a specific column """
         if ".csv" not in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
-            asked = drop_user_input(titlel="Column", promptl="Columns"+str(self.df.columns.values.tolist())+
+            asked = drop_user_input(titlel="Column",
+                                    promptl="Columns"+str(self.df.columns.values.tolist())+
                                     "\nInsert the name of the column"+
-                                    "you want to drop", dt="String")          
+                                    "you want to drop", dt="String")
             if asked in self.df.columns:
                 original = len(self.df)
                 self.df.drop_duplicates(subset=asked, keep=keep, inplace=True)
                 self.effectedlines += abs(original - len(self.df))
-                msg.showinfo("DUPLICATES", "DUPLICATES HAVE SUCCESSFULLY REMOVED\nTHERE ARE " + str(self.effectedlines) + " EFFECTED LINES.\nTHERE ARE " + str(len(self.df)) + " REMAINING LINES")
+                msg.showinfo("DUPLICATES",
+                             "DUPLICATES HAVE SUCCESSFULLY REMOVED\nTHERE ARE " +
+                             str(self.effectedlines) +
+                             " EFFECTED LINES.\nTHERE ARE " +
+                             str(len(self.df)) + " REMAINING LINES")
             else:
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
     def drop_missing(self, axis):
@@ -175,7 +183,10 @@ class CsvCleaner():
             original = len(self.df)
             self.df.dropna(axis=axis, inplace=True)
             self.effectedlines += abs(original-self.effectedlines)
-            msg.showinfo("MISSING VALUES", "MISSING VALUES HAS SUCCESSFULLY REMOVED\nTHERE ARE " +str(self.effectedlines)+ " EFFECTED LINES\nTHERE ARE " + str(len(self.df)) + " REMAINING LINES")
+            msg.showinfo("MISSING VALUES",
+                         "MISSING VALUES HAS SUCCESSFULLY REMOVED\nTHERE ARE "
+                         +str(self.effectedlines)+ " EFFECTED LINES\nTHERE ARE " +
+                         str(len(self.df)) + " REMAINING LINES")
     def closefile(self):
         """ closes the csv file """
         if ".csv" not in self.filename:

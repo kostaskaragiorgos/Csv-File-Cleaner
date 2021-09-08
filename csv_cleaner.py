@@ -186,6 +186,7 @@ class CsvCleaner():
         else:
             value = simpledialog.askstring("REPLACE VALUE", "Enter the value to replace nan")
             self.df.replace(to_replace = np.nan, value = value, inplace=True)
+            msg.showinfo("SUCCESS", "NAN VALUES WERE REPLACED WITH" + value)
 
     def drop_missing(self, axis):
         """ deletes columns or rows with missing values"""

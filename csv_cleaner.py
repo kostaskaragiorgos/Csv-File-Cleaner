@@ -67,6 +67,9 @@ Returns:
             asked = simpledialog.askstring(title=titlel, prompt=promptl)
     return asked
 
+
+
+
 class CsvCleaner():
 
     """csv file cleaner class"""
@@ -177,10 +180,11 @@ class CsvCleaner():
             else:
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
     
-    def replace_nanvalues(self, value):
+    def replace_nanvalues(self):
         if ".csv" not in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
+            value = simpledialog.askstring("REPLACE VALUE", "Enter the value to replace nan")
             self.df.replace(to_replace = np.nan, value = value, inplace=True)
 
     def drop_missing(self, axis):

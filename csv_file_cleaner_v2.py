@@ -82,6 +82,7 @@ class CsvFileCleaner(CsvCleaner):
         self.miss_v.add_command(label="Drop rows with missing values",
                                 accelerator='Alt+N',
                                 command=lambda: self.drop_missing(0))
+        self.miss_v.add_command(label="Modify missing values")
         self.menu.add_cascade(label="Missing Values", menu=self.miss_v)
         self.about_menu = Menu(self.menu, tearoff=0)
         self.about_menu.add_command(label="About", accelerator='Ctrl+I', command=aboutmenu)

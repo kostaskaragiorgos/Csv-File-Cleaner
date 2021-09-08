@@ -175,6 +175,13 @@ class CsvCleaner():
                              str(len(self.df)) + " REMAINING LINES")
             else:
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
+    
+    def replace_nanvalues(self, value):
+        if ".csv" not in self.filename:
+            msg.showerror("ERROR", "NO CSV IMPORTED")
+        else:
+            pass
+
     def drop_missing(self, axis):
         """ deletes columns or rows with missing values"""
         if ".csv" not in self.filename:

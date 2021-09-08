@@ -4,6 +4,7 @@ csv_cleaner_version_2
 from tkinter import  simpledialog
 from tkinter import messagebox as msg, filedialog
 import pandas as pd
+import numpy as np
 
 
 
@@ -180,7 +181,7 @@ class CsvCleaner():
         if ".csv" not in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
-            pass
+            self.df.replace(to_replace = np.nan, value = value, inplace=True)
 
     def drop_missing(self, axis):
         """ deletes columns or rows with missing values"""

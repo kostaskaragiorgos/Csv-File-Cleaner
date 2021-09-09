@@ -181,6 +181,7 @@ class CsvCleaner():
                 msg.showerror("ERROR", "THERE IS NO SUCH A COLUMN")
     
     def replace_nanvalues(self):
+        """replace's the nanvalue with a desired value"""
         if ".csv" not in self.filename:
             msg.showerror("ERROR", "NO CSV IMPORTED")
         else:
@@ -209,6 +210,7 @@ class CsvCleaner():
             self.filename = ""
             self.effectedlines = 0
             msg.showinfo("SUSSESS", "YOUR CSV FILE HAS SUCCESFULLY CLOSED")
+    
     def checkfile(self):
         """ checks if inserted file is a csv """
         if self.filename.endswith('.csv'):
